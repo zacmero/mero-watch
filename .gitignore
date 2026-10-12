@@ -1,0 +1,23 @@
+# Python local environment
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Raw device data: BLE dumps and private telemetry must remain local
+captures/
+logs/
+*.pcap
+*.pcapng
+*.btsnoop
+*.btsnoop_hci
+*.log
+.env
+.env.*
+!.env.example
+
+# Editor and OS
+.DS_Store
+.idea/
