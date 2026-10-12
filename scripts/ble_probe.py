@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Read-only BLE reconnaissance for mero-watch.
 
-Commands: scan, inspect, listen. No GATT writes, firmware updates or pairing manipulation.
+Commands: scan, inspect, listen. No application-command writes, firmware updates\nor pairing manipulation. Notification subscriptions may configure the standard GATT CCCD.
 Output may contain unique device identifiers or private data: keep raw logs local.
 """
 from __future__ import annotations
