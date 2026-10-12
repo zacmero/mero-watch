@@ -6,6 +6,8 @@ A living investigation of Zac Mero's working Apple Watch Ultra-style **clone**: 
 
 > **Status — 2026-10-12:** Watch is charged, fully operational, and available for experiments. The chipset, firmware update format, CPU/RTOS, and prospects for a native shell or custom firmware are **not yet known**.
 
+**Verified Linux connection, 2026-10-12:** the owner-described normal Bluetooth mode connects without GFit Pro. BlueZ resolved its services and the Linux audio system selected `a2dp-sink`; the connection survived closing `bluetoothctl`. Seven checks over 30 seconds confirmed connection state, and the owner subsequently reported it stable. Audio playback and microphone operation have not been tested. This mode exposed zero GATT services, so the historical AE00/AE02 channel is still unverified on Linux. See the [normal-mode connection procedure](docs/lab-playbook.md#normal-bluetooth-connection-without-the-phone-app) and [dated findings](docs/protocol-notes.md#2026-10-12--normal-mode-connection-without-companion-app-from-2142-utc).
+
 ## Known device facts (and their limits)
 
 | Field | Evidence / status |
@@ -27,6 +29,8 @@ A living investigation of Zac Mero's working Apple Watch Ultra-style **clone**: 
 **Important:** The watch already yielded genuine BLE clues in 2025. This is not a from-scratch protocol project; our blocker then was an unreliable Linux Bluetooth adapter, not a complete lack of device communications.
 
 ## Repository map
+
+- [Modification options](docs/modification-options.md) — practical routes to agent status/commands, voice, protocol bridges and native firmware; latest connection limitation and next experiments
 
 - [Device dossier](docs/device-dossier.md) — known facts, hypotheses, unknowns, preservation rules
 - [2025 investigation archive](docs/2025-investigation.md) — prior LightBlue/Bleak tests and observed packet data

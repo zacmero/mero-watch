@@ -2,6 +2,12 @@
 
 North star: **turn a working, unidentified watch into an understood and potentially programmable interface** without sacrificing the only working specimen.
 
+## Progress — 2026-10-12
+
+**Modification research:** owner prioritizes agent status and short commands. A watch AVRCP input node/media interface was observed, and Siri voice interaction is owner-reported. These give concrete host bridge experiments. Later reconnect failed with `br-connection-key-missing`; restore the baseline before event/voice tests. The Jieli/RCSP-family lead has source support, but no exact hardware target or native app capability is established. See [modification options](modification-options.md) for the ranked routes and experiment gates.
+
+Normal-mode Linux connection without the companion app is verified: BlueZ resolved services, created an audio transport, and the host selected `a2dp-sink`. The connection held through seven checks over 30 seconds and survived closing the Bluetooth client; the owner subsequently reported it stable. This establishes the normal audio-profile connection, not the BLE bridge milestone. The current mode exposed zero GATT services; AE00/AE02 notification capture and all command decoding remain pending. See the [dated protocol evidence](protocol-notes.md) and [consolidated device findings](device-dossier.md#device-findings-consolidated--2026-10-12-session).
+
 ## Phase 0 — Baseline preservation
 
 - Photograph device, charger, box/label and all version/diagnostic screens.

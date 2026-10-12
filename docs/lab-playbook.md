@@ -97,6 +97,24 @@ Stop collectors after experiment. The old `hci0 removed` event distinguishes a h
 
 Before any firmware procedure: archive original app version/update manifest; examine packages and update blobs **offline**; identify chip/platform; establish rollback and voltage constraints. Never deliver an unknown `AE01` packet, reflash blindly, or force bootloader entry on the only functioning specimen.
 
+## Normal Bluetooth connection without the phone app
+
+The owner-described normal Bluetooth mode exposed working audio profiles on Linux on 2026-10-12. This connection did not expose GATT services; it is not evidence of AE02 notification access. The watch's mode icons remain undocumented.
+
+Disconnect the phone normally, keep the watch near the USB adapter, and use the currently discovered watch address. For the already bonded watch, start an interactive client:
+
+```bash
+rtk proxy bluetoothctl
+# interactive commands, not shell commands:
+default-agent
+connect <CURRENT_WATCH_ADDRESS>
+info <CURRENT_WATCH_ADDRESS>
+```
+
+Verify `Connected: yes`. The stronger diagnostic is BlueZ `ServicesResolved=true` together with a media transport; the host audio system reported `a2dp-sink` in the successful experiment. Exiting the interactive client with `quit` left the verified connection active. Do not run the short-lived `ble_probe.py inspect` as a persistence check: its context manager disconnects after inventory.
+
+Do not remove existing bonds or reset the watch to troubleshoot this path. A successful audio connection does not establish microphone, notification, or agent-control access.
+
 ## Template: outcome
 
 ```text

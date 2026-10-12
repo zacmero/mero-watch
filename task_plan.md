@@ -1,0 +1,31 @@
+# Watch modification research — 2026-10-12
+
+Objective: find evidence-backed ways to make the existing watch useful for Linux agent status and short commands; determine whether replacing features/native apps is feasible.
+
+## Phases
+
+1. Baseline and owner priorities — complete. Owner prioritizes agent status and short commands, and reports Siri interaction without a health app. Later disconnection is recorded separately from the earlier verified stability window.
+2. Read-only host capability inventory — complete. AVRCP input/media interfaces observed; actual events and Linux voice capture remain experimental follow-up. Native tools are installed. Reconnect/key error and unavailable LE route recorded.
+3. Primary-source protocol and firmware research — complete for this research pass. Official SDK/source comparisons support an RCSP-family hypothesis. Exact app binary, hardware and firmware target remain unknown and are explicit future identification tasks.
+4. Modification options and next experiment — complete. Ranked host-control, voice, status display, vendor bridge, watch-face and native firmware paths documented in docs/modification-options.md.
+5. Documentation verification — complete. Whitespace checks and local Markdown file-link checks passed; ignored research artifacts remain private.
+
+## Constraints
+
+Preserve the watch and historical records. Do not send undocumented GATT/serial commands, initiate DFU, reset bonds, open the case or program hardware. Raw captures remain ignored. Host applications are possible research outcomes; native execution is unverified.
+
+## Errors
+
+- Built-in web search failed to decode its response. Try the available alternative web connector; direct primary-source retrieval is a fallback.
+- Alternative web connector returned search and official app-listing results.
+- The initial input-node path disappeared before capability decoding. Resolve the AVRCP device dynamically rather than reuse event14.
+- Both external repository searches failed with import error 504. Use targeted official documentation and GitHub tree/raw retrieval rather than retrying repository imports.
+- Some official documentation URLs failed in the browser connector; direct HTTPS retrieval succeeded for the RCSP documentation. One append failed to match a long context line; corrected using a smaller known anchor.
+- A second long-line patch anchor failed; subsequent edits use section-heading anchors.
+- `evtest --help` returned exit 1 while printing its supported capture/query usage. Use documented `evtest DEVICE` syntax; do not use exclusive grab.
+- Normal reconnect failed with br-connection-key-missing/remote termination. Owner reports no intervening phone reconnection or mode change. No pairing reset was attempted.
+- Explicit CLI LE connection reported Bearer.LE1 unavailable. No permanent preference was changed; diagnostic client was closed.
+
+## Follow-up implementation prerequisites
+
+Restore and diagnose the normal connection without guessing protocol writes. Capture real watch-only control events, then build a small host bridge. Verify Linux microphone/playback before promising voice. Identify board/firmware/recovery before native feature removal. These are follow-up experiments, not completed capabilities.

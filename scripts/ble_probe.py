@@ -39,7 +39,11 @@ async def scan(args: argparse.Namespace) -> None:
 
 
 def show_services(client: BleakClient) -> None:
-    for service in client.services:
+    services = list(client.services)
+    if not services:
+        print("No GATT services exposed by BlueZ; AE00/AE02 access is not verified.")
+        return
+    for service in services:
         print(f"Service {service.uuid} | {service.description}")
         for char in service.characteristics:
             properties = ", ".join(char.properties)
@@ -114,6 +118,7 @@ if __name__ == "__main__":
     try:
         asyncio.run(options.run(options))
     except (OSError, TimeoutError) as err:
-        parser.exit(1, f"BLE operation failed: {err}\nCheck adapter, phone connection, and btmon/journalctl.\n")
+        detail = str(err) or "no additional error detail"
+        parser.exit(1, f"BLE operation failed ({type(err).__name__}): {detail}\nCheck adapter, phone connection, and btmon/journalctl.\n")
     except KeyboardInterrupt:
         parser.exit(130, "Interrupted.\n")

@@ -58,3 +58,59 @@ The marking `A2859` and advertised name `Apple Watch` must **not** be used to se
 ## Physical inventory to collect next
 
 Photos of front/rear, strap removed if safe, packaging labels, setup/about/version screens; charger type; display resolution only if measured; case dimensions only if measured; phone app version; output of `lsusb`, `bluetoothctl list`, scanner advertisement and GATT enumeration. None of these new data has been collected yet in this repo.
+
+## Verified host/connection observations — 2026-10-12
+
+Live checks at 21:32–21:35 UTC confirmed TP-Link USB `2357:0604`, a powered/unblocked `hci0`, kernel `7.1.8-arch1-3` and BlueZ `5.87`. The historical watch address/name was observed advertising again. One Bleak connection returned `Connected: True` with zero GATT services; attempts before and after timed out without observed controller disappearance. AE00/AE01/AE02 have not yet been reverified. See the dated [protocol investigation record](protocol-notes.md) for commands, provenance and limits. This append updates the earlier collection status without replacing historical observations.
+
+At 21:44:14 UTC, an interactive BlueZ connection in the owner-described normal Bluetooth mode was verified with `Connected=true`, `ServicesResolved=true` and an audio media transport. The Linux audio card's active profile was `a2dp-sink`. No companion app was used. Zero GATT services/characteristics were exposed in that inventory; AE02 and microphone access remain unverified.
+
+## Device findings consolidated — 2026-10-12 session
+
+**Later-session update:** read-only modification research found a watch AVRCP input node and media-control interface, then a subsequent disconnect and `br-connection-key-missing` on reconnect. Earlier stability remains a dated observation; the last state in the later session was disconnected. The owner reports Siri voice interaction without a health app and supplied a pairing JSON descriptor naming BLE/EDR at the historical address. These reports and RCSP-family source comparisons are appended below and in the protocol notebook.
+
+### Verified observations
+
+- The historical address and `Apple Watch` name were discovered again on the current Linux host. Sample RSSI values ranged from −80 to −50 dBm. These readings establish reception, not the cause of earlier timeouts.
+- BlueZ reported the watch address type as `public`. This is a host-reported property, not authenticated manufacturer identity or a guarantee that the address never changes.
+- The successful normal-mode connection was paired and bonded, with services resolved. Seven samples spanning 30 seconds remained connected; an independent check after closing the Bluetooth client also remained connected. No companion app was required for this connection.
+- BlueZ exposed the following device/profile UUIDs. Their presence is not proof that each function works; they were not all exercised:
+
+| BlueZ label | Full UUID |
+| --- | --- |
+| Serial Port | `00001101-0000-1000-8000-00805f9b34fb` |
+| Audio Sink | `0000110b-0000-1000-8000-00805f9b34fb` |
+| A/V Remote Control Target | `0000110c-0000-1000-8000-00805f9b34fb` |
+| A/V Remote Control | `0000110e-0000-1000-8000-00805f9b34fb` |
+| Handsfree | `0000111e-0000-1000-8000-00805f9b34fb` |
+| Human Interface Device | `00001124-0000-1000-8000-00805f9b34fb` |
+| PnP Information | `00001200-0000-1000-8000-00805f9b34fb` |
+| Vendor specific | `fe010000-1234-5678-abcd-00805f9b34fb` |
+
+- The host created an idle media transport with UUID `0000110a-0000-1000-8000-00805f9b34fb` and codec value `0`. The audio card had active profile `a2dp-sink`. Playback, calls and microphone capture were not attempted.
+- BlueZ showed manufacturer-data key `0x05d6` and modalias `bluetooth:v05D6p000Ad0240`. These are reported protocol identifiers; no manufacturer or chipset attribution was validated. Payload semantics remain unknown.
+- The normal-mode inventory contained zero BlueZ GATT services and characteristics. The vendor-specific UUID above was a device UUID, not an enumerated GATT service. Historical AE00/AE01/AE02 were not rediscovered in this session.
+
+### Owner-reported mode and phone behavior
+
+- A watch pairing mode asks the user to download a health app for phone connection.
+- The owner can connect the watch to an iPhone without that app and sees two connections. Their identities and transports were not independently inventoried.
+- The owner calls the successful setting normal Bluetooth mode. Clicking its normal Bluetooth icon changes it to a “B...” icon with dots; exact icon meanings and whether the control represents mode, power or connection status remain unknown.
+- The phone was disconnected for the computer retry. The owner subsequently confirmed that the computer connection was stable.
+
+### Limits and next evidence
+
+The normal Bluetooth connection is verified; persistent BLE notifications, serial data, HID input, microphone access, shell access and agent control are not. App initialization requirements and a separate BLE identity remain hypotheses. A QR/app prompt does not prove that the app is technically mandatory for all device functions.
+
+The current adapter did not reproduce the historical controller-removal failure. Earlier intermittent attempts have no confirmed packet-level root cause: proximity, phone competition, watch setting changes and host connection handling were not isolated. Raw HCI monitoring was blocked by host permissions. Preserve the working normal-mode connection and investigate the BLE channel separately when its identity is established.
+
+## Modification-research evidence — later 2026-10-12 session
+
+- **Observed:** BlueZ exposed media-control and input interfaces; Linux created `Apple Watch (AVRCP)`. Actual key events were not captured, and host capabilities do not prove each advertised key can be generated by the watch.
+- **Owner-reported:** app-free phone pairing and Siri voice interaction work. Linux microphone capture, a wake-word mechanism and audio playback remain untested.
+- **Owner correction:** the current prompt is generic “Health App”; exact companion app identity is unknown. GFit Pro remains the historical recollection, not a verified current download identity.
+- **Owner-supplied descriptor:** QR JSON has same-address `bleAddr`/`edrAddr`, `connectWay=0`, `name=Apple Watch`, `pid=76`, `vid=4750`. These are unauthenticated protocol fields; their full semantics are unknown.
+- **Hypothesis with new source support:** Jieli/RCSP-related protocol is plausible because official vendor docs/source use the historical UUID family, packet boundary markers and similar QR fields. Exact chip, firmware SDK target, authentication and command semantics remain unknown. The prior AC695X/RTL8762C suggestions are not promoted to hardware facts.
+- **Later observed blocker:** normal reconnect returned `br-connection-key-missing` and remote termination; explicit LE connection was unavailable through the installed daemon/device API. No bond reset or unexplained write was attempted.
+
+The owner prioritizes agent status and short commands. [Modification options](modification-options.md) distinguishes host bridges, voice, metadata/notification display, watch faces and actual native firmware/UI replacement, with evidence and prerequisites for each.
