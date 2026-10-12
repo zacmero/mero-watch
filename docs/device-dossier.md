@@ -114,3 +114,6 @@ The current adapter did not reproduce the historical controller-removal failure.
 - **Later observed blocker:** normal reconnect returned `br-connection-key-missing` and remote termination; explicit LE connection was unavailable through the installed daemon/device API. No bond reset or unexplained write was attempted.
 
 The owner prioritizes agent status and short commands. [Modification options](modification-options.md) distinguishes host bridges, voice, metadata/notification display, watch faces and actual native firmware/UI replacement, with evidence and prerequisites for each.
+
+
+2026-10-12 follow-up: BLE AE00/AE01/AE02 rediscovered after standard pairing repair; Classic A2DP/AVRCP connected alongside GATT. Watch-only evtest verified KEY_PLAYCD (200) and KEY_PAUSECD (201), press/release. Owner reports computer music control and watch app access. One AE02 notification captured; semantics unknown. Microphone, camera shutter and agent commands remain untested. See docs/protocol-notes.md for dated evidence and official mobile-app candidates; no Linux health app identified.

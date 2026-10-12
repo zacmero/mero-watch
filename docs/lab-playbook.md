@@ -131,3 +131,10 @@ Result and logs saved in captures/:
 Hypothesis supported / falsified:
 Next safe test:
 ```
+
+
+### Verified dual connection follow-up (2026-10-12)
+
+After authorized standard pairing repair, GATT and Classic media were available together. In `rtk proxy bluetoothctl`, use `default-agent`, then connect the watch Audio Sink with `connect F9:F3:71:D9:79:11 0000110b-0000-1000-8000-00805f9b34fb` and AVRCP with `connect F9:F3:71:D9:79:11 0000110e-0000-1000-8000-00805f9b34fb`. This session also required host trust for the watch's incoming media authorization. Do not repeat pairing repair merely to test a working link.
+
+Resolve the current watch AVRCP input node before running `rtk proxy sudo timeout 90 evtest /dev/input/event14`; event14 was correct only for this session. Avoid exclusive grab. Actual play and pause emitted KEY_PLAYCD and KEY_PAUSECD with press/release values. No vendor GATT command is needed for these controls.

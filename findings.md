@@ -54,3 +54,6 @@ Owner correction: the watch prompt says generic “Health App”; the exact comp
 
 
 The historical sample is 19 bytes, begins `FE DC BA`, and ends `EF`. Directly retrieved official [RCSP documentation](https://doc.zh-jieli.com/SDKWiki/master/Jieli-Tech/fw-AC63_BT_SDK/9-third-party-integrations/9.1-jl-rcsp.html) describes the same boundary tags. This supports an RCSP-family hypothesis, not a decoded packet or exact SoC identity. Its payload, opcode, flags, length and authentication meaning remain unknown. No bytes were transmitted. Official source headers are being checked to ground this comparison independently of search snippets.
+
+
+2026-10-12 follow-up: BLE AE00/AE01/AE02 rediscovered after standard pairing repair; Classic A2DP/AVRCP connected alongside GATT. Watch-only evtest verified KEY_PLAYCD (200) and KEY_PAUSECD (201), press/release. Owner reports computer music control and watch app access. One AE02 notification captured; semantics unknown. Microphone, camera shutter and agent commands remain untested. See docs/protocol-notes.md for dated evidence and official mobile-app candidates; no Linux health app identified.

@@ -29,3 +29,9 @@ Preserve the watch and historical records. Do not send undocumented GATT/serial 
 ## Follow-up implementation prerequisites
 
 Restore and diagnose the normal connection without guessing protocol writes. Capture real watch-only control events, then build a small host bridge. Verify Linux microphone/playback before promising voice. Identify board/firmware/recovery before native feature removal. These are follow-up experiments, not completed capabilities.
+
+## Follow-up: publish milestones, restore and test — complete
+
+User authorized committing/pushing current milestones and restoring the computer connection, and requested online identification of the health app for installation on this computer. Milestone commit created as 04ac1be; pushed successfully. Standard watch-specific pairing repair is authorized as part of restoring the connection; no watch reset, firmware or speculative protocol write is authorized. Inspect native app/platform availability before proposing an installation.
+
+Dual BLE/Classic connection restored; full GATT inventory, one AE02 notification and actual Linux play/pause events verified. Official mobile app candidates identified; exact compatibility and Linux health application remain unverified. Follow-up evidence recorded for publication.
