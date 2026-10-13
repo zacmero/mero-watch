@@ -75,3 +75,8 @@ Capture setup correction: local proxy verification did not establish phone reach
 - [ ] Resolve RCSP framing/authentication and capability-dependent message path; prepare validated offline synthetic packet.
 - [ ] Trace type2 receive/storage/rendering callback and decode RU30/style/preview assets.
 - [ ] Establish a live synthetic computer-status display with an explained command; firmware flashing remains separately gated.
+
+
+## 2026-10-13 command-test milestone
+
+Completed: synthetic button mapping, live read-only identification, authenticated metadata query, owner-confirmed custom text delivery. Pending: popup policy, actual agent API integration, physical button dispatch check, firmware validation/recovery boundaries. No update transfer authorized or performed.

@@ -81,3 +81,6 @@ Vendor PI32v2/r3 toolchain acquired locally; investigator C fixture validated co
 SFC resource decryption succeeded using private package material. Verified FAT16-style raw layout, 13 complete file chains, seven stock faces, main UI/sidebar/fonts/logo and two unresolved background formats. Eleven JLFS bundles parsed, including RU30 assets. Face JSON contains project metadata, not app code.
 
 APK message command0xA1/type2/version0 and typed text fields traced; native matching dispatcher located. Still no authentication/capability/live display test. Provenance, exact hashes, routine addresses, resource sizes and limits are recorded in docs/build-analysis.md. Original package hash preserved; no watch command or firmware execution.
+
+
+2026-10-13: Authenticated RCSP metadata and custom status text delivery demonstrated. Owner confirms vibration and stored message, no popup. See docs/protocol-notes.md dated record. Firmware update capability reports no double backup; physical recovery remains unverified.
