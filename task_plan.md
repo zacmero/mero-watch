@@ -35,3 +35,15 @@ Restore and diagnose the normal connection without guessing protocol writes. Cap
 User authorized committing/pushing current milestones and restoring the computer connection, and requested online identification of the health app for installation on this computer. Milestone commit created as 04ac1be; pushed successfully. Standard watch-specific pairing repair is authorized as part of restoring the connection; no watch reset, firmware or speculative protocol write is authorized. Inspect native app/platform availability before proposing an installation.
 
 Dual BLE/Classic connection restored; full GATT inventory, one AE02 notification and actual Linux play/pause events verified. Official mobile app candidates identified; exact compatibility and Linux health application remain unverified. Follow-up evidence recorded for publication.
+
+## Firmware and custom watch information investigation — active
+
+Owner prioritizes OS access and custom computer information over button mappings; confirms GFit Pro and supplies manual URL and firmware screenshots. Phases: inspect evidence; inspect official web/app assets and update mechanisms; locate and inspect matching firmware offline; assess native access and display channels; publish source-backed findings and unresolved prerequisites. No update or restoration command is authorized.
+
+Research errors: official legacy website returned 404; two upstream repository import searches returned 504. Direct vendor JavaScript and GitHub API/raw source retrieval used instead.
+
+Further research errors: Tencent GFit package page 404; APKCombo DNS failure; browser connector failed on APK mirrors and some official SDK pages. Direct HTTPS retrieved GFit Pro mirror and official GSFit APK for offline analysis. Metadata request preparation stopped before sending because the RSA key is stored as a field, not a method literal; inspect the correct field.
+
+Research pass status: screenshot inspection, vendor/manual inspection, offline app analysis, source-backed display/native options and tool assessment complete. Exact device firmware retrieval remains unresolved: vendor response code 422; authenticated app response/cache needed. OS access and display test are still pending; no firmware or protocol-write experiment performed. Public report written; local Markdown links and whitespace checks passed. Publish this research milestone.
+
+Final query correction: timestamp units were corrected to seconds; server still returned code 422. Preparation error and initial incomplete wrapper were not evidence of a missing firmware.

@@ -19,3 +19,7 @@
 
 
 2026-10-12 follow-up: BLE AE00/AE01/AE02 rediscovered after standard pairing repair; Classic A2DP/AVRCP connected alongside GATT. Watch-only evtest verified KEY_PLAYCD (200) and KEY_PAUSECD (201), press/release. Owner reports computer music control and watch app access. One AE02 notification captured; semantics unknown. Microphone, camera shutter and agent commands remain untested. See docs/protocol-notes.md for dated evidence and official mobile-app candidates; no Linux health app identified.
+
+2026-10-12 firmware research pass: inspected owner screenshots; confirmed 1.0.0.4 / PID76 / 1004 / type0. Inspected vendor manual/website assets and offline Android GFit Pro 1.4.5 plus separate vendor GSFit APK. Identified Jieli RCSP/OTA/authentication libraries and actual firmware lookup routes. Metadata rejected with code422; no exact image acquired. Reviewed official text/resource APIs, independent authentication/UFW tools, Jieli Ghidra support and ReverseEngineerAnything. Main priorities corrected to OS access/custom display. Report created at docs/gfit-firmware-research.md; raw binaries and crypto material remain ignored/private. No watch writes or updates.
+
+Report verification: all repository-local Markdown targets resolve; git diff --check passes; downloaded APKs and crypto disassembly confirmed ignored. Ready to publish documentation-only milestone. Exact firmware acquisition and custom display/OS experiments remain pending.

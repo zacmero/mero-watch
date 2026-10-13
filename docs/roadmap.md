@@ -80,3 +80,8 @@ Progressive, evidence-driven milestones:
 - Each completed experiment should record **setup, command, raw observable evidence, interpretation, negative results, next hypothesis**.
 - Maintain provenance tags: **observed**, **owner-reported**, **inferred**, **untested**.
 - Keep this roadmap aligned with open GitHub issues; update the dossier only when an interpretation becomes evidence-backed.
+
+
+## Updated owner priorities — 2026-10-12
+
+Investigate OS/firmware access and custom computer information on the display first; keep control mapping as secondary work. Obtain exact firmware offline and verify a synthetic text/status display through compatible vendor protocol or resources. See [GFit firmware research](gfit-firmware-research.md). A native shell, custom executable loading and feature removal remain research objectives, not supported capabilities.

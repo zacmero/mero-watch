@@ -28,6 +28,10 @@ A living investigation of Zac Mero's working Apple Watch Ultra-style **clone**: 
 
 **Important:** The watch already yielded genuine BLE clues in 2025. This is not a from-scratch protocol project; our blocker then was an unreliable Linux Bluetooth adapter, not a complete lack of device communications.
 
+## Latest firmware and display investigation — 2026-10-12
+
+Both BLE and Classic media connections were restored; Linux play/pause events are verified. The owner's GFit Pro screenshots show firmware **1.0.0.4**, **PID 76 / version 1004 / type 0**. The priority is OS/firmware access and displaying custom computer information. Offline app inspection identified Jieli RCSP/OTA components and the firmware lookup mechanism; the exact image is still missing. See [GFit firmware and custom-display research](docs/gfit-firmware-research.md).
+
 ## Repository map
 
 - [Modification options](docs/modification-options.md) — practical routes to agent status/commands, voice, protocol bridges and native firmware; latest connection limitation and next experiments

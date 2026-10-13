@@ -117,3 +117,10 @@ The owner prioritizes agent status and short commands. [Modification options](mo
 
 
 2026-10-12 follow-up: BLE AE00/AE01/AE02 rediscovered after standard pairing repair; Classic A2DP/AVRCP connected alongside GATT. Watch-only evtest verified KEY_PLAYCD (200) and KEY_PAUSECD (201), press/release. Owner reports computer music control and watch app access. One AE02 notification captured; semantics unknown. Microphone, camera shutter and agent commands remain untested. See docs/protocol-notes.md for dated evidence and official mobile-app candidates; no Linux health app identified.
+
+
+## Owner firmware screenshots and app confirmation — 2026-10-12
+
+Observed in owner-supplied app screenshots: current/latest firmware **1.0.0.4**; restoration screen **pid:76 version:1004 type:0**. This is the latest app-visible version evidence, while the older reported v1001 marking remains historical. Owner confirms GFit Pro and reports App Store release 1.4.5; recalls a previous firmware update with uncertainty. The manual URL selects watch_type=ultra2, a tutorial category rather than hardware identity.
+
+Offline Android GFit Pro 1.4.5 inspection found Jieli RCSP/OTA libraries and a PID-based firmware lookup. This strengthens the protocol lead without identifying the watch MCU. The vendor metadata query rejected unauthenticated research requests with code 422, Token error or expired; no matching device firmware image was obtained. OS/shell access and custom screen output remain unverified. See [firmware research](gfit-firmware-research.md) for sources, artifact hashes, display options and next steps.

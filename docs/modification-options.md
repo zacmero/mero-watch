@@ -96,3 +96,10 @@ Success: an evidence-backed answer about native execution, with a matching build
 ## Research limitations
 
 No matching app binary or original firmware was available locally. External repository-index searches failed with HTTP 504; targeted official GitHub source retrieval succeeded. Some documentation pages were inaccessible through the browser connector but could be fetched directly. HCI capture and watch input-node access were blocked by host permissions. No physical opening, firmware transfer, unexplained GATT/serial write or health-app installation was performed.
+
+
+## Priority correction and new evidence — 2026-10-12
+
+Owner now clarifies that OS access and **custom computer information on the watch display** are the main objectives; button mapping is secondary. BLE/Classic restoration and play/pause verification supersede the earlier connection blocker. Native execution remains unknown.
+
+GFit Pro is owner-confirmed; screenshots show firmware 1.0.0.4, PID 76, version 1004, type 0. Offline app inspection strengthens the Jieli protocol lead and identifies real OTA lookup/download routes. The exact image has not been retrieved because the metadata server rejects the research request. Notification text and compatible watch resources are the strongest source-backed custom-display leads; neither is validated on this specimen yet. [Firmware/display research](gfit-firmware-research.md) records native access prerequisites and the owner-suggested ReverseEngineerAnything tooling.
