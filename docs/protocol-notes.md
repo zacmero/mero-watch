@@ -149,3 +149,11 @@ Official app research: [WearLink](https://play.google.com/store/apps/details?id=
 ## 2026-10-12 — GFit Pro and firmware/display research
 
 Owner prioritizes native OS/firmware access and custom computer information on the watch over button mapping. Firmware screenshots show 1.0.0.4 / PID 76 / version 1004 / type 0. Android GFit Pro 1.4.5 offline inspection found Jieli RCSP, authentication and OTA components. Official SDK provides notification and watch-resource operations; specimen support is untested. Vendor firmware metadata query returned code 422, Token error or expired. Exact image remains unavailable in this research pass. No watch protocol writes or firmware operations were performed. Detailed provenance and findings: [GFit firmware research](gfit-firmware-research.md).
+
+## 2026-10-12 — owner-session firmware metadata and host-only retrieval
+
+Owner-configured iPhone HTTPS capture observed GFit Pro `ota/pidVersion` returning code `1024` (no latest device firmware), and `ota/userUpgradeOta` returning code `200` with encrypted restoration metadata. Client-side decoding yielded PID76/version1004/type0 and `update1004.ufw`. These server API routes are not evidence of a BLE command encoding.
+
+A host-side `ota/piddownload` request with the documented encrypted `fwareUrl` body and live app session headers held in memory downloaded 18,760,384 bytes. Vendor MD5 matched exactly. An earlier 73-byte token-error response was rejected as a firmware artifact. No watch GATT write, OTA transfer or restoration was initiated by the investigator. See [full artifact and container evidence](gfit-firmware-research.md#2026-10-12-owner-session-capture-and-matching-firmware-acquired).
+
+Raw captures, crypto material, certificate files and binaries remain ignored/private. Vendor TLS inspection and certificate-download listeners were stopped; temporary firewall allowances were removed and their absence verified. Owner reports phone proxy off and certificate trust disabled, with the profile retained for potential future analysis.

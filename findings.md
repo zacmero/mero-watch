@@ -65,3 +65,11 @@ Manual assets retrieved: index.26091567.js and enVideo chunk d6c9a1a1 expose har
 Primary SDK source evidence: Android-JL_Health NotificationHelper calls WatchManager.pushMessageInfo with NotificationMsg title/content; UpgradeViewModel queries online OTA using device PID/UID and accepts .ufw/.buf or update ZIP. This does not establish this specimen's commands or firmware. ElectronicCats/jieli-ble-badge-research publishes AC707N badge custom firmware and build/dump documentation for different hardware; useful tooling, not compatible firmware. Vendor current QR points to GS Fit landing page, with a vendor-hosted GSFit APK (different app identity from owner-confirmed GFit Pro).
 
 GFit Pro Android offline artifact identified as com.app.cy.GFit 1.4.5 (42), mirrored XAPK; APK SHA-256 37aa539669470c402bd064fd252c7daccb90548be8170c3af63b2be2498192b7. Vendor-hosted GSFit APK saved separately. Neither executed/installed. GFit contains Jieli RCSP and OTA libraries, upgrade state machine, OTA metadata via POST ota/pidVersion (PID/version/MAC/optional userId) and download via ota/piddownload on vendor AWS application base. No bundled .ufw/.fw image found. Query wrapper is app-specific AES/RSA; no crypto keys, user tokens or raw app binaries will be committed.
+
+## 2026-10-12 — exact vendor firmware obtained
+
+Owner-session capture resolved the earlier missing artifact. Restoration metadata: PID76/version1004/type0, `update1004.ufw`, MD5 `550f4fcf32916da3a2dbb77c9510ee3e`. Host-only download: 18,760,384 bytes, checksum matched, SHA-256 `5f315a22adada0c7933afa89558b5d1e9be577ede10f9dbc5a53cd82c2c23145`. Initial selected-header attempt returned code422; complete applicable app headers succeeded. No watch update.
+
+Decoded UFW label `JL701N`, BR28 `board_7012AF_J1` source-path evidence, matching extracted components from both outer flash images, and separate large resource container substantially strengthen the AC701-family lead. This establishes a matching vendor package, not physical chip identity or OS/shell access. Some auxiliary entry CRC treatment remains unresolved. See docs/gfit-firmware-research.md for provenance, sizes, limits and next work.
+
+Host capture listeners/firewall rules cleaned up and absence verified. Owner disabled phone proxy and certificate trust; private setup retained by request. No confidential captures or keys enter Git.

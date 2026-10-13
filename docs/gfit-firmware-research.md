@@ -105,3 +105,49 @@ The proposed first display test is a fixed, nonprivate message such as `Mero: ag
 4. Implement the smallest custom Linux status sender after that display test succeeds. Keep the native-access branch active until hardware/image/recovery evidence can support a decision.
 
 Research limitations: upstream repository-import tools returned 504; direct GitHub API/raw retrieval succeeded. Some browser fetches failed while direct HTTPS worked. No full authenticated phone traffic was captured. No speculative GATT write, OTA transfer, restoration, firmware execution, physical opening or flash programming occurred.
+
+## 2026-10-12: owner-session capture and matching firmware acquired
+
+This follow-up supersedes the earlier unresolved retrieval status. The owner configured the iPhone Wi-Fi proxy, installed the temporary capture certificate and enabled trust. HTTPS inspection was restricted to the vendor domains; only firmware-route bodies were retained locally. Raw captures, certificate material, request encryption material and binary artifacts remain in ignored `captures/`, outside the public repository.
+
+**Observed:** GFit Pro's normal `ota/pidVersion` check returned code `1024`, saying there was no latest firmware for this device. This did not mean the restoration package was unavailable. An `ota/userUpgradeOta` response returned code `200` and encrypted metadata. Decoding it using the client response-envelope implementation inspected in the Android app produced:
+
+| Field | Observed value |
+| --- | --- |
+| PID / version / OTA type | `76` / `1004` / `0` |
+| Filename | `update1004.ufw` |
+| Vendor file reference | `/opt/gssd/file/ota/square/pid76/update1004.ufw` |
+| MD5 | `550f4fcf32916da3a2dbb77c9510ee3e` |
+| English description | `Performance optimization, voluntary resource upgrade` |
+| Size field | `18320`; units not established by the response |
+
+These identifiers match the owner's firmware screenshots. There was no public download URL. A computer-side POST to the app's documented `ota/piddownload` route, with encrypted `fwareUrl` parameters and the live app session headers held only in memory, retrieved the package. An initial attempt forwarded a selected set of headers and received a 73-byte code `422` token-error response; it was rejected as firmware. A subsequent request using the complete applicable app headers succeeded. No firmware-transfer command was sent to the watch.
+
+**Observed artifact:** `18,760,384` bytes; MD5 exactly matches the metadata above; SHA-256 `5f315a22adada0c7933afa89558b5d1e9be577ede10f9dbc5a53cd82c2c23145`. This is a matching vendor restoration package, not a physical dump of the watch's flash. The checksum establishes consistency with the vendor response; it does not establish a cryptographic signature or an unlocked update policy.
+
+### Offline container and board evidence
+
+The [jl-misctools source at commit 0a5b12d](https://github.com/kagaimiq/jl-misctools/tree/0a5b12db0ef38f3042acffbe2452730a37fd2405/firmware) was inspected before use. A local copy added checks against archive filenames escaping the extraction directory. The original firmware bytes were preserved.
+
+**Observed:** the decoded UFW header labels the chip `JL701N`. Its header and entry-table CRC checks passed. Its image-size field equals the complete downloaded file length. Selected outer entries are:
+
+| Entry | Bytes | Observation |
+| --- | ---: | --- |
+| `res.bin` | 15,878,720 | Resource container; contains a bounded `new_res.bin` payload of 15,878,656 bytes |
+| `ota.bin` | 203,879 | Includes `BR28_EDR_UPDATE` and `BR28_BLE_UPDATE` strings |
+| `flash.bin` | 1,339,392 | Successfully unpacked application and boot resources |
+| `flash2.bin` | 1,335,808 | Successfully unpacked; extracted component files match those from `flash.bin` byte for byte |
+
+These four payloads passed the entry CRC calculation used by the inspected tool. Several small auxiliary entries did not match that same calculation; their encoding/checksum treatment remains unresolved. Do not claim every entry has been validated.
+
+Each flash image yielded 31 files, including `app.bin` (1,200,992 bytes), `uboot.boot`, `user_api.bin`, `p11_code.bin`, configuration, tones and upgrade UI resources. The application contains a source-path suffix `PID76/sdk/apps/watch/board/br28/board_7012AF_J1/board_7012AF_J1.c`, `br28_draw_image`, and RCSP update strings. The second outer flash image also contains an `ac701_uboot_lcd_ui_0.0.1` source-path fragment.
+
+**Interpretation:** independent package and code evidence strongly supports the Jieli AC701/BR28 family and a firmware build targeting `7012AF_J1`. This is substantially stronger than the earlier AC695X/Realtek theories. It is still evidence from the matching package, not a chip-marking inspection or running CPU identification. An `AC697N_ble_test` string and an older AC695N library version string also occur; these are insufficient to override the board-path and package evidence or identify the physical chip.
+
+**Still unproven:** the exact CPU instruction-set target, RTOS identity, debug-port access, an interactive shell, arbitrary-code loading and firmware signature enforcement. UART/update strings alone do not prove an accessible console. The large resource payload still needs format analysis; its presence does not establish that custom apps can run.
+
+The next offline work is to correlate the AC701/BR28 board evidence with the appropriate SDK and disassembler, map the application/resource layout, and trace the existing text/notification display path. A synthetic computer-status display remains the first practical bridge experiment once its protocol is explained. Flashing and restoration are separate experiments requiring approval and a recovery plan.
+
+### Capture cleanup
+
+**Observed on host:** both capture listeners were stopped; both temporary firewall rules were removed; verification found no listener on either capture port and no capture rule remaining. **Owner-reported:** iPhone Wi-Fi proxy switched off and certificate trust disabled. The owner chose to retain the certificate profile for possible future analysis; removal was not confirmed. Private capture setup and artifacts are retained locally for that purpose. No permanent firewall change was made.

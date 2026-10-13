@@ -47,3 +47,20 @@ Further research errors: Tencent GFit package page 404; APKCombo DNS failure; br
 Research pass status: screenshot inspection, vendor/manual inspection, offline app analysis, source-backed display/native options and tool assessment complete. Exact device firmware retrieval remains unresolved: vendor response code 422; authenticated app response/cache needed. OS access and display test are still pending; no firmware or protocol-write experiment performed. Public report written; local Markdown links and whitespace checks passed. Publish this research milestone.
 
 Final query correction: timestamp units were corrected to seconds; server still returned code 422. Preparation error and initial incomplete wrapper were not evidence of a missing firmware.
+
+## Owner-authorized iPhone firmware capture — active
+
+Prepare isolated temporary host proxy, limit TLS inspection to vendor domains, save only relevant firmware requests/responses in ignored private captures, verify connectivity, guide iPhone proxy/certificate setup, then observe normal app/version page without starting update/restoration. Disconnect capture and remove temporary phone proxy/certificate after test. Capture configuration and result pending.
+
+Capture setup correction: local proxy verification did not establish phone reachability. Host firewalld port allowance was missing; added bounded runtime rule for capture port only. Retry phone onboarding, then verify inbound traffic before app test.
+
+## 2026-10-12 capture follow-up — complete
+
+- [x] Verify owner phone traffic and certificate trust, capture vendor firmware lookup.
+- [x] Decode exact PID76/version1004/type0 restoration metadata.
+- [x] Download matching vendor package to computer, verify vendor checksum, preserve original bytes.
+- [x] Unpack application/boot components offline; inventory outer resources and record board-family evidence.
+- [x] Stop capture listeners and remove temporary firewall rules; verify cleanup. Owner reports phone proxy off and certificate trust disabled.
+- [x] Record public-safe findings; retain private capture setup by owner request.
+- [ ] Correlate AC701/BR28/7012AF_J1 with SDK and CPU support, inspect resource format and text-display handler.
+- [ ] Establish an explained synthetic status-display experiment; OS/shell/custom native apps and recovery remain research branches.

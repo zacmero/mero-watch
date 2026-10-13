@@ -4,7 +4,10 @@
 
 A living investigation of Zac Mero's working Apple Watch Ultra-style **clone**: identify its real hardware, document its Bluetooth protocol, test non-destructive control from Arch Linux, and see whether it can become a minimalist interface for Mero agents.
 
-> **Status — 2026-10-12:** Watch is charged, fully operational, and available for experiments. The chipset, firmware update format, CPU/RTOS, and prospects for a native shell or custom firmware are **not yet known**.
+> **Initial status — 2026-10-12:** Watch is charged, fully operational, and available for experiments. The chipset, firmware update format, CPU/RTOS, and prospects for a native shell or custom firmware are **not yet known**.
+
+**Latest firmware milestone — 2026-10-12:** Matching vendor firmware **`update1004.ufw`** acquired for **PID76 / version1004 / type0** (18,760,384 bytes; vendor MD5 matched). Offline inspection found the **`JL701N`** package label and **BR28 `board_7012AF_J1`** build evidence. Application/boot components and a large resource container are available for analysis. OS/shell access and custom native app loading remain unproven. No firmware was transferred to the watch. See [artifact evidence and next work](docs/gfit-firmware-research.md#2026-10-12-owner-session-capture-and-matching-firmware-acquired).
+
 
 **Verified Linux connection, 2026-10-12:** the owner-described normal Bluetooth mode connects without GFit Pro. BlueZ resolved its services and the Linux audio system selected `a2dp-sink`; the connection survived closing `bluetoothctl`. Seven checks over 30 seconds confirmed connection state, and the owner subsequently reported it stable. Audio playback and microphone operation have not been tested. This mode exposed zero GATT services, so the historical AE00/AE02 channel is still unverified on Linux. See the [normal-mode connection procedure](docs/lab-playbook.md#normal-bluetooth-connection-without-the-phone-app) and [dated findings](docs/protocol-notes.md#2026-10-12--normal-mode-connection-without-companion-app-from-2142-utc).
 
@@ -28,7 +31,7 @@ A living investigation of Zac Mero's working Apple Watch Ultra-style **clone**: 
 
 **Important:** The watch already yielded genuine BLE clues in 2025. This is not a from-scratch protocol project; our blocker then was an unreliable Linux Bluetooth adapter, not a complete lack of device communications.
 
-## Latest firmware and display investigation — 2026-10-12
+## Earlier firmware and display investigation — 2026-10-12
 
 Both BLE and Classic media connections were restored; Linux play/pause events are verified. The owner's GFit Pro screenshots show firmware **1.0.0.4**, **PID 76 / version 1004 / type 0**. The priority is OS/firmware access and displaying custom computer information. Offline app inspection identified Jieli RCSP/OTA components and the firmware lookup mechanism; the exact image is still missing. See [GFit firmware and custom-display research](docs/gfit-firmware-research.md).
 
