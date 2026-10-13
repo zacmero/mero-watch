@@ -85,3 +85,8 @@ Completed: synthetic button mapping, live read-only identification, authenticate
 ## Codex integration milestone
 
 Completed: read-only local lifecycle source, source-derived text sender with private authentication, actual-session delivery acknowledgement, bounded change watcher, eight tests. Pending: owner confirmation of Mero Codex display, Herdr source from a managed pane, popup policy, narrowly scoped agent commands.
+
+
+## Custom-screen branch
+
+Owner confirmed Codex delivery but rejects Messages as the primary UI. Dual-link repair and post-repair message-only behavior verified. Informational query established reported 240x296 screen, W002 compatibility and 16 MiB external flash. Offline screen concept prepared. Next: stock RU30/resource round trip, compatible custom-face artifact for review, native UI entry/memory/display analysis. No resource or firmware transfer performed.

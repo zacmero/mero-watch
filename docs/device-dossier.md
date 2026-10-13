@@ -154,3 +154,10 @@ Provenance: local BlueZ/D-Bus reads, private RCSP captures and offline GFit Pro 
 - No firmware/DFU command or update transfer occurred. The authentication reset used was the SDK's volatile session reset, not a factory reset. Notification payloads were source-derived rather than guessed GATT writes.
 
 Next: inspect SDK and native notification display policy before changing flags; build agent-status delivery on the proven text path. Complete offline update-validator, memory-layout and recovery analysis before proposing any modified firmware installation.
+
+
+## 2026-10-13 — Dual-link repair and custom-screen preflight
+
+Owner confirms the Mero Codex message in Messages, without a popup; vibration on that delivery was uncertain. Current inspection found Device1 Connected=true but MediaControl1 Connected=false and no watch input device. Standard Connect alone did not restore media. Explicit advertised HID/A2DP-sink/AVRCP profile connections restored MediaControl and the AVRCP input device. Owner then confirmed the Bluetooth icon lit, but the subsequent Mero link test still produced only a stored message, without popup or vibration. Both-bearer availability alone therefore does not explain that test's behavior.
+
+A source-verified informational GetExternalFlashMsg query returned SDK-decoded screen dimensions 240x296, reported external flash and FAT size 16 MiB each, match version W002 and external-flash receive MTU 256. These are device reports, not physical measurements. Offline custom-face and native UI routes, source provenance, unknowns and the 240x296 screen concept are recorded in docs/custom-screen-research.md. No face/resource transfer, activation, firmware command or flash operation occurred.

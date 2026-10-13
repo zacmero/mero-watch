@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="296" viewBox="0 0 240 296" role="img" aria-label="Proposed Mero agent screen, not installed firmware">
+  <rect width="240" height="296" rx="28" fill="#101214"/>
+  <g font-family="DejaVu Sans, sans-serif">
+    <text x="17" y="29" font-size="12" font-weight="700" fill="#aab1b8">MERO</text>
+    <circle cx="219" cy="24" r="4" fill="#75daa7"/>
+    <text x="17" y="62" font-size="25" font-weight="700" fill="#f6f7f8">Agent run</text>
+    <rect x="16" y="78" width="208" height="91" rx="15" fill="#20272a"/>
+    <circle cx="33" cy="99" r="4" fill="#ffb46b"/>
+    <text x="45" y="103" font-size="11" font-weight="700" letter-spacing="1" fill="#ffb46b">WORKING</text>
+    <text x="29" y="134" font-size="22" font-weight="700" fill="#f6f7f8">Codex</text>
+    <text x="29" y="154" font-size="11" fill="#b7c1c7">Latest reported status</text>
+    <rect x="16" y="180" width="208" height="45" rx="12" fill="#191d20"/>
+    <text x="29" y="198" font-size="10" fill="#8f9da5">COMPUTER</text>
+    <text x="29" y="215" font-size="13" fill="#e3e8ec">Connected</text>
+    <path d="M193 199l5 5 10-12" fill="none" stroke="#75daa7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="16" y="239" width="64" height="36" rx="10" fill="#ffb46b"/>
+    <text x="48" y="261" text-anchor="middle" font-size="10" font-weight="700" fill="#171a1c">AGENTS</text>
+    <rect x="86" y="239" width="59" height="36" rx="10" fill="#252b30"/>
+    <text x="115.5" y="261" text-anchor="middle" font-size="10" font-weight="700" fill="#dce4e9">HOST</text>
+    <rect x="151" y="239" width="73" height="36" rx="10" fill="#252b30"/>
+    <text x="187.5" y="261" text-anchor="middle" font-size="10" font-weight="700" fill="#dce4e9">ACTIONS</text>
+  </g>
+</svg>

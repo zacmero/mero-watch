@@ -36,3 +36,8 @@ Authentication is loaded from a separately inspected local Python helper exposin
 - **Observed:** The Bluetooth service remained active with its original daemon command and no experimental runtime override before this integration.
 
 Next: confirm the Codex message on the watch, connect a Herdr status source from an authorized managed pane, investigate popup policy offline, and map a deliberate watch button to a narrowly defined agent action. Remote terminal execution and modified firmware installation remain separate work.
+
+
+### Later owner confirmation and connection repair
+
+Owner confirmed the Codex message in Messages, without popup; vibration was uncertain. A subsequent live check found BLE data connected but AVRCP disconnected. Explicit media/HID profile connections restored AVRCP and the watch icon. Owner reported message-only delivery, without popup or vibration, on the next text test despite restored connections. See custom-screen-research.md.
