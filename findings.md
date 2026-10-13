@@ -84,3 +84,8 @@ APK message command0xA1/type2/version0 and typed text fields traced; native matc
 
 
 2026-10-13: Authenticated RCSP metadata and custom status text delivery demonstrated. Owner confirms vibration and stored message, no popup. See docs/protocol-notes.md dated record. Firmware update capability reports no double backup; physical recovery remains unverified.
+
+
+## 2026-10-13 — Real Codex status bridge
+
+Implemented scripts/codex_watch.py and scripts/watch_notifications.py. A read-only local Codex rollout source sent `Mero Codex` / `Codex | Agent run | working` for another session with recent events. Observed RCSP transport status 0 and application parameters [2,1]; visual confirmation of this specific message remains pending. A bounded 60-second follow test completed with no further state transition. No terminal control or firmware transfer occurred. Authentication helper/material remain private; public code logs no raw packets or metadata replies. Eight unit tests passed. Herdr was explicitly considered but not accessed because HERDR_ENV was unset. See docs/agent-bridge.md for setup, provenance and limitations.

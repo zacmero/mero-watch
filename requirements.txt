@@ -1,2 +1,4 @@
 # Optional BLE reconnaissance helper
 bleak>=0.22
+# Custom Linux D-Bus notification bridge
+dbus-fast

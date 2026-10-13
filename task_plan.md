@@ -80,3 +80,8 @@ Capture setup correction: local proxy verification did not establish phone reach
 ## 2026-10-13 command-test milestone
 
 Completed: synthetic button mapping, live read-only identification, authenticated metadata query, owner-confirmed custom text delivery. Pending: popup policy, actual agent API integration, physical button dispatch check, firmware validation/recovery boundaries. No update transfer authorized or performed.
+
+
+## Codex integration milestone
+
+Completed: read-only local lifecycle source, source-derived text sender with private authentication, actual-session delivery acknowledgement, bounded change watcher, eight tests. Pending: owner confirmation of Mero Codex display, Herdr source from a managed pane, popup policy, narrowly scoped agent commands.
