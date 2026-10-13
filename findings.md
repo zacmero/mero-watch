@@ -73,3 +73,11 @@ Owner-session capture resolved the earlier missing artifact. Restoration metadat
 Decoded UFW label `JL701N`, BR28 `board_7012AF_J1` source-path evidence, matching extracted components from both outer flash images, and separate large resource container substantially strengthen the AC701-family lead. This establishes a matching vendor package, not physical chip identity or OS/shell access. Some auxiliary entry CRC treatment remains unresolved. See docs/gfit-firmware-research.md for provenance, sizes, limits and next work.
 
 Host capture listeners/firewall rules cleaned up and absence verified. Owner disabled phone proxy and certificate trust; private setup retained by request. No confidential captures or keys enter Git.
+
+## 2026-10-13 — deeper build analysis
+
+Vendor PI32v2/r3 toolchain acquired locally; investigator C fixture validated compiler/disassembler. Package entrypoint plus 1,247 string-pointer matches establish extracted app base0x06000120, correcting initial comparison-SDK origin hypothesis0x06000100. Five exact kernel-function matches against a CONFIG_UCOS_ENABLE AC701 SDK strongly support Jieli uC/OS-II-derived RTOS. Exact kernel version/shell/debug access remain unresolved.
+
+SFC resource decryption succeeded using private package material. Verified FAT16-style raw layout, 13 complete file chains, seven stock faces, main UI/sidebar/fonts/logo and two unresolved background formats. Eleven JLFS bundles parsed, including RU30 assets. Face JSON contains project metadata, not app code.
+
+APK message command0xA1/type2/version0 and typed text fields traced; native matching dispatcher located. Still no authentication/capability/live display test. Provenance, exact hashes, routine addresses, resource sizes and limits are recorded in docs/build-analysis.md. Original package hash preserved; no watch command or firmware execution.

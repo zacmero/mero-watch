@@ -64,3 +64,14 @@ Capture setup correction: local proxy verification did not establish phone reach
 - [x] Record public-safe findings; retain private capture setup by owner request.
 - [ ] Correlate AC701/BR28/7012AF_J1 with SDK and CPU support, inspect resource format and text-display handler.
 - [ ] Establish an explained synthetic status-display experiment; OS/shell/custom native apps and recovery remain research branches.
+
+## 2026-10-13 offline build pass
+
+- [x] Correlate BR28 SDK target and use vendor PI32v2/r3 decoder on unchanged application bytes.
+- [x] Establish application mapping from package entry and string-reference evidence.
+- [x] Compare kernel code against symbolized SDK; record strong uC/OS-II-derived inference and limits.
+- [x] Decrypt resource image and check all 13 file chains; inventory 11 JLFS bundles and RU30 assets.
+- [x] Trace app text serializer and native command0xA1 dispatcher without sending a watch command.
+- [ ] Resolve RCSP framing/authentication and capability-dependent message path; prepare validated offline synthetic packet.
+- [ ] Trace type2 receive/storage/rendering callback and decode RU30/style/preview assets.
+- [ ] Establish a live synthetic computer-status display with an explained command; firmware flashing remains separately gated.

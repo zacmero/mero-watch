@@ -132,3 +132,11 @@ Offline Android GFit Pro 1.4.5 inspection found Jieli RCSP/OTA libraries and a P
 **Observed, artifact contents:** decoded UFW chip label `JL701N`; source-path suffix `PID76/sdk/apps/watch/board/br28/board_7012AF_J1/board_7012AF_J1.c` in `app.bin`; `ac701_uboot_lcd_ui_0.0.1` source-path fragment in the second flash image. These support an AC701/BR28-family build targeting `7012AF_J1`; physical silicon identity remains unverified. Both flash images unpacked to application/boot/configuration/tone/upgrade-UI components. The outer package also contains a 15,878,720-byte resource container.
 
 No native shell, RTOS identity, arbitrary app loader, signature bypass or recovery route has been established. No update was transferred to the watch. Detailed provenance and integrity limits are in [the firmware research report](gfit-firmware-research.md#2026-10-12-owner-session-capture-and-matching-firmware-acquired).
+
+## 2026-10-13 — application, kernel and display-resource analysis
+
+**Observed:** the vendor PI32v2 toolchain disassembles the application; its package entry point and 1,247 string-pointer correlations place the extracted `app.bin` at `0x06000120`. Five complete kernel-function byte sequences match a comparison AC701/BR28 SDK built with `CONFIG_UCOS_ENABLE`, including 54-byte `OS_EventTO` and 46-byte `OS_EventTaskWait` routines. **Strong inference:** Jieli PI32v2/r3 with a uC/OS-II-derived kernel/port. Exact kernel version and physical chip identification remain unverified.
+
+**Observed:** the resource image decrypted using package-derived material; all 13 allocation chains checked out. Contents include main UI, sidebar, seven stock watchface bundles, two backgrounds, fonts and logo. Eleven root files parsed as JLFS bundles; RU30 asset decoding remains unresolved. Face JSON is project/version metadata, not executable app source.
+
+App bytecode defines a text push via RCSP `0xA1`; firmware disassembly contains the corresponding subtype dispatcher. Live authentication, capability negotiation and text rendering remain untested. No shell, runtime debugger, arbitrary app loader or custom-firmware recovery has been demonstrated. See [build analysis](build-analysis.md) for hashes, addresses, source provenance and modification routes. No Bluetooth writes or updates occurred during this offline pass.

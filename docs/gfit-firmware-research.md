@@ -151,3 +151,7 @@ The next offline work is to correlate the AC701/BR28 board evidence with the app
 ### Capture cleanup
 
 **Observed on host:** both capture listeners were stopped; both temporary firewall rules were removed; verification found no listener on either capture port and no capture rule remaining. **Owner-reported:** iPhone Wi-Fi proxy switched off and certificate trust disabled. The owner chose to retain the certificate profile for possible future analysis; removal was not confirmed. Private capture setup and artifacts are retained locally for that purpose. No permanent firewall change was made.
+
+## 2026-10-13: deeper analysis follow-up
+
+The [build analysis](build-analysis.md) now records PI32v2/r3 disassembly, application address correlation, five exact kernel-function matches supporting a Jieli uC/OS-II-derived RTOS, decrypted/verified resource files and the app/native RCSP text-push path. This advances the earlier unresolved architecture/RTOS/resource questions. Shell access, complete text rendering, runtime authentication and safe custom firmware remain unproven.
