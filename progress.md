@@ -90,3 +90,18 @@ Owner explicitly prefers a native app/UI through normal firmware update; backgro
 ## 2026-10-13 — native architecture pass
 
 Added stock-hash-guarded runtime ELF mapping, conservative code indexing and read-only style inventory. Confirmed next-instruction-relative PI32v2 calls with a compiled fixture; resolved 148 updater direct ROM calls and documented 174 unresolved indirect calls. Recorded two exact UI function matches and native loader correlation. Public architecture notes link evidence and open gaps. Validation: 21 unit tests pass; real nine-file style inventory validates 131 header/table checks and reports the unresolved data mismatch. Device untouched.
+
+
+## 2026-10-13 — installation proof reprioritized
+
+Owner explicitly authorized firmware load testing and requested exclusive focus on proving modified-code deployment. Native UI research paused. Started narrowly scoped proxy on 192.168.1.97:8899, selecting SHA256-verified unchanged stock firmware for initial download interception. Added a temporary LAN-only firewall rule tagged mero-watch-load-test. Requested phone proxy/trust setup and restoration-page observation; no upgrade action or watch transfer yet. Next: verify app download path and metadata checks, then controlled identifiable modified build. Recovery after a failed boot remains unverified and was disclosed before authorization.
+
+Firewall correction: iptables INPUT ACCEPT did not establish reachability; an independent inet firewalld input hook remained. Added runtime firewalld rich rule permitting TCP 8899 only from current phone IPv4 192.168.1.84 with a 3600-second expiry. Earlier single-layer firewall assessment was incomplete.
+
+Modified download handoff prepared: selected the prevalidated both-image branding fixture SHA256 a687b219ec0cf3415a3b9961036103e3cafcf4cf5bf9e5011df063fc369ce0b7; MD5 2fd0d033055a4e897e8dbd5e83b2b0db. Verified decrypt/re-encrypt of the real restoration metadata with exactly its fileMd5 changed and every other decoded field preserved. Key material loaded only from ignored inspected app disassembly, never logged. Restarted proxy selecting this artifact; waiting for refreshed Detect and subsequent owner update action.
+
+Owner instructed to press Upgrade Now after refreshed detection. Observed POST /abroad/awsd/ota/piddownload and proxy HTTP 200 response containing 18,760,384 bytes of the modified fixture with SHA256 a687b219ec0cf3415a3b9961036103e3cafcf4cf5bf9e5011df063fc369ce0b7. This establishes app download handoff only; watch transfer, acceptance and boot are still pending owner observation. Sanitized event journal retained privately at captures/firmware-work/load-test-events.jsonl.
+
+Owner reports GFit Pro shows transfer progress without an error so far. This is owner-reported transfer initiation, not yet accepted installation or boot confirmation.
+
+Owner-reported transfer checkpoint: 40%, slow but continuing, no error reported. No host BLE operation was initiated while the phone owns the update connection.
