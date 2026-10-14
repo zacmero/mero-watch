@@ -118,7 +118,7 @@ def main():
     output = raw
     offset = None
     if args.action == "branding-fixture":
-        old, new = b"Apple Watch", b"Mero Agent!"
+        old, new = b"Apple Watch", b"mero-watch\0"
         app = app_bytes(layouts[BANKS[0]])
         if app.count(old) != 1 or len(old) != len(new):
             raise ValueError("Unique equal-length fixture string not found")

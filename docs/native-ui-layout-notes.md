@@ -24,3 +24,9 @@ The direct Linux transfer branch is separate: the SDK has FatFsWatch/RcspWatch i
 ## 2026-10-13 — native loader and runtime follow-up
 
 Full dated architecture record: [native architecture](native-architecture.md). It covers the source-correlated screen loader, exact UI helper matches and all 131 stock window directory/table CRC checks. Stock data CRC interpretation remains unresolved for 130 windows; no modified layout was uploaded.
+
+## 2026-10-14 — native style CRC interpretation resolved
+
+**Observed offline:** Re-running scripts/native_style_inventory.py across all nine stock .sty files under the private resource-bundles directory validates all 131 window-header CRCs, all 131 relocation-table CRCs, and all 131 window-data CRCs when each relocation word is masked to its lower 17 bits for the CRC calculation. Original tagged bytes are preserved; the inventory does not write files. All non-null normalized targets fall inside their window. This supersedes the earlier unresolved 130/131 raw-data CRC mismatch, without replacing that historical observation. Pointer tags and normalized-target validity are now reported explicitly. The tagged-pointer test also checks that corruption of a lower pointer bit invalidates the normalized CRC.
+
+This resolves a data-integrity interpretation gap, not the full native control ABI, resource writer, event ownership, or custom application execution. Reference SDK pointer/page decoding differences remain to be reconciled.

@@ -137,3 +137,9 @@ This establishes direct computer-only update entry, both transfer stages, loader
 ### Fresh stock update: normal boot confirmed
 
 **Owner-reported (2026-10-14):** After the completed computer-only stock update and normal power-on, the watch returned to its normal clock/menu. The complete fresh-start route is therefore demonstrated on this device: Linux authentication/eligibility, update entry from normal firmware, first-stage file serving, device-driven loader relink, second-stage firmware programming, success acknowledgement and normal boot. GFit Pro was not required for this update sequence. This test installed the original stock package, not the prepared mero-watch marker candidate.
+
+## 2026-10-14 — native style CRC interpretation resolved
+
+**Observed offline:** Re-running scripts/native_style_inventory.py across all nine stock .sty files under the private resource-bundles directory validates all 131 window-header CRCs, all 131 relocation-table CRCs, and all 131 window-data CRCs when each relocation word is masked to its lower 17 bits for the CRC calculation. Original tagged bytes are preserved; the inventory does not write files. All non-null normalized targets fall inside their window. This supersedes the earlier unresolved 130/131 raw-data CRC mismatch, without replacing that historical observation. Pointer tags and normalized-target validity are now reported explicitly. The tagged-pointer test also checks that corruption of a lower pointer bit invalidates the normalized CRC.
+
+This resolves a data-integrity interpretation gap, not the full native control ABI, resource writer, event ownership, or custom application execution. Reference SDK pointer/page decoding differences remain to be reconciled.

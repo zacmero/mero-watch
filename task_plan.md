@@ -115,3 +115,7 @@ Entry from normal firmware: confirmed by host transfer and owner display. Active
 Fresh stock update: both Linux-initiated passes, loader relink, final success and reboot acknowledgement completed. Pending owner normal-boot confirmation. No new firmware modification was installed in this test.
 
 Fresh computer-only stock update verification: COMPLETE. Owner confirmed normal boot. Next: traced, visibly testable native UI modification using the established Linux updater; arbitrary modifications and failed-boot recovery remain unproved.
+
+## Approved mission for 2026-10-15
+
+See docs/mission-2026-10-15.md for the owner-approved sequence, success criteria, retained features, evidence boundaries and command-console direction. First target: traced native panel plus observable custom handler, then one live agent value. Style CRC blocker resolved across 131 windows; event/control paths and custom code execution remain to be demonstrated.

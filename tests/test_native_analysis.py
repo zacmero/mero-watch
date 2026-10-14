@@ -20,8 +20,14 @@ class NativeAnalysisTests(unittest.TestCase):
         self.assertTrue(window["reference_data_crc_matches"])
         self.assertTrue(window["header_crc_matches"])
         self.assertTrue(window["table_crc_matches"])
+        struct.pack_into("<I", data, 44, 0x04000000)
+        tagged = inventory(data)["windows"][0]
+        self.assertFalse(tagged["reference_data_crc_matches"])
+        self.assertTrue(tagged["normalized_data_crc_matches"])
+        self.assertEqual(tagged["pointer_tags"], [512])
         data[44] ^= 1
         self.assertFalse(inventory(data)["windows"][0]["reference_data_crc_matches"])
+        self.assertFalse(inventory(data)["windows"][0]["normalized_data_crc_matches"])
         struct.pack_into("<H", data, 48, 6)
         with self.assertRaises(ValueError):
             inventory(data)
