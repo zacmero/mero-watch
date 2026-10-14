@@ -214,7 +214,9 @@ class Updater(WatchNotifications):
         emit("flash_entry_sent" if enter else "resume_waiting", fragment_bytes=self.fragment)
         blocks = total = 0
         tick = time.monotonic()
-        deadline = tick + 1800
+        # A successful resource pass can take almost 30 minutes on this watch.
+        # Keep a finite bound with room for ordinary BLE throughput variation.
+        deadline = tick + 3600
         while time.monotonic() < deadline:
             try:
                 opcode, sequence, parameters = await asyncio.wait_for(self.incoming.get(), 60)

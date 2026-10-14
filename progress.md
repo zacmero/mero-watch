@@ -197,3 +197,7 @@ and keeps every size/offset fixed. All 35 existing tests pass; original and
 recovery-copy hashes/0400 modes reconfirmed. Package is prepared, not flashed;
 waiting for phone Bluetooth off and watch nearby before direct transfer.
 
+
+2026-10-14 23:23 UTC: authorized menu-logo direct OTA completed. First pass E6=80 and expected peripheral disconnect; second pass E6=00, E7 acknowledgement 00000000, updater exit 0. Owner confirmed grid menu. Awaiting normal boot and cyan M/Calculator launch check. Per-pass timeout raised to 60 minutes for future runs after this successful first pass finished five seconds before the former 30-minute limit.
+
+Owner-verified completion: normal grid menu returned; Calculator icon is M, label is still CALC, and tapping it opens normal Calculator. Visible menu-resource control and preserved launch are now proved. New entry/app cloning, custom native C execution and label modification remain unproved. Host normal-address LE connection is present; updater disconnected.

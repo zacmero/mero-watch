@@ -87,3 +87,19 @@ Size remains 18,760,384 bytes. This is an installable offline-validated candidat
 not a confirmed on-watch result. Seeing the changed Calculator icon would prove
 control of a visible native menu asset. It would not prove a new app or execution
 of investigator-authored C.
+
+
+### Authorized direct transfer started
+
+2026-10-14 22:50 UTC: owner confirmed iPhone Bluetooth off/watch nearby and explicitly requested the update. Passive handoff observer became ready before the primary updater started. Private journals: menu-logo-transfer-events.jsonl and menu-logo-handoff-events.jsonl. Final programming and on-watch verification pending.
+
+2026-10-14 23:20:55 UTC: first pass completed with E6=80 after about 29m55s, 3998 served blocks and 15,939,487 response bytes. Relink request was acknowledged and peripheral disconnect observed. The stage-two loader connection accepted E3 and announced 1,302,528 code-bank bytes. First-pass process exit 1 is the expected no-reboot-at-80 handoff behavior, not final update failure. The next-run per-pass host timeout was increased from 30 to 60 minutes because this successful pass approached the old limit within five seconds; the running processes are unaffected. Owner reports normal menu layout is a grid.
+
+2026-10-14 23:23:11 UTC: second pass completed with E6=00, 334 served blocks and 1,309,024 response bytes. E7 reboot reply was 00000000. Handoff/updater process exited 0. This is observed programming-protocol success; normal boot, visible icon and preserved Calculator launch remain pending owner verification. The complete direct transfer took about 32 minutes.
+
+
+### Owner-verified visible result
+
+After the completed OTA, the owner reported: Calculator icon shows M, its label remains CALC, and tapping it opens the normal Calculator. The watch returned to its normal grid menu. Host inspection also shows the normal address ...11 connected over LE, while updater ...12 is disconnected; Classic/media connectivity has not been retested in this experiment.
+
+This proves a visible native-menu image modification delivered through the direct computer OTA route, with Calculator launch preserved. It does not prove a new menu entry, duplicated native application, investigator-authored C execution, or modification of the CALC label. The next native-code experiment must target a reachable, visible application widget and preserve or deliberately replace its actual callback path. The inaccessible Music lyric probe remains an unsuccessful visibility test, not a proved execution milestone.
