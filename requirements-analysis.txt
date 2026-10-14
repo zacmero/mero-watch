@@ -2,3 +2,5 @@
 Pillow
 pyelftools
 unicorn
+# Inspected upstream UFW/jltech backend
+crcmod
