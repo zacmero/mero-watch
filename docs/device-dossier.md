@@ -166,3 +166,9 @@ A source-verified informational GetExternalFlashMsg query returned SDK-decoded s
 ## 2026-10-13 — offline native architecture evidence
 
 Startup-derived RAM copy map, two exact UI helper matches and updater/header inspection are documented in [native architecture](native-architecture.md). These establish analysis leads, not a shell, custom app, verified update acceptance or recovery capability. Device was untouched during this pass.
+
+Owner-reported updater display address F9:F3:71:D9:79:12, versus previously observed normal BLE/EDR F9:F3:71:D9:79:11. Treat as a distinct update-mode candidate, not an overwritten normal address. Owner reports repeated Chinese message/loading cycles, then further apparent progress; success and normal reboot still unconfirmed.
+
+Observed passive BLE: F9:F3:71:D9:79:12 advertised local name Apple Watch, RSSI -78 dBm, no service UUIDs in advertisement, manufacturer-data ID 1494 (0x05d6). This is live host evidence of the alternate updater address; manufacturer ID alone does not identify/authenticate hardware. Requested owner force-close phone app before a read-only service inventory.
+
+Owner photograph /home/zacmero/Downloads/photo_2026-10-13_23-43-37.jpg shows Chinese 等待连接 (waiting for connection) and 地址 (address), explicitly F9:F3:71:D9:79:12. Dots are a waiting indicator; apparent progress is not verified flash progress. This narrows the current failure to update-mode connection/handoff; application acceptance/rejection remains unproven. No IMEI is displayed in this photo. Read-only connect at nearby RSSI -58 also timed out.

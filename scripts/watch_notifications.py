@@ -32,12 +32,14 @@ def message_frame(sequence, title, content, now=None):
 
 
 class WatchNotifications:
-    def __init__(self, address, auth_helper):
+    def __init__(self, address, auth_helper, authenticate=True, subscribe=True):
         self.address = address.upper()
         self.auth_helper = auth_helper
         self.sequence = secrets.randbelow(256)
         self.bus = self.notification = self.properties = None
         self.listening = False
+        self.authenticate = authenticate
+        self.subscribe = subscribe
         self.auth_queue = asyncio.Queue()
         self.pending = {}
         self.buffer = bytearray()
@@ -126,8 +128,11 @@ class WatchNotifications:
                 if attribute == "notification":
                     self.properties = proxy.get_interface("org.freedesktop.DBus.Properties")
             self.properties.on_properties_changed(self.changed)
-            await self.notification.call_start_notify()
-            self.listening = True
+            if self.subscribe:
+                await self.notification.call_start_notify()
+                self.listening = True
+            if not self.authenticate:
+                return self
             loop = asyncio.get_running_loop()
             owner = self
 

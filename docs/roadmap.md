@@ -85,3 +85,8 @@ Progressive, evidence-driven milestones:
 ## Updated owner priorities — 2026-10-12
 
 Investigate OS/firmware access and custom computer information on the display first; keep control mapping as secondary work. Obtain exact firmware offline and verify a synthetic text/status display through compatible vendor protocol or resources. See [GFit firmware research](gfit-firmware-research.md). A native shell, custom executable loading and feature removal remain research objectives, not supported capabilities.
+
+
+## 2026-10-14 — owner priority: direct computer OTA
+
+Use the custom Linux BLE updater as the main deployment path. GFit Pro remains a source for vendor packages/metadata and comparison behavior. First gate is demonstrated modified-code installation and normal boot; native UI research stays paused until that gate is met. Direct transfer is currently in progress; full acceptance/execution remains unconfirmed. See installation-proof.md.
