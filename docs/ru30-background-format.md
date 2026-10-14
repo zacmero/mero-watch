@@ -37,3 +37,13 @@ The owner initially recalled vendor-only downloads, then rechecked GFit Pro and 
 Offline SDK tracing distinguishes legacy `FatFsWatch` from `RcspWatch`. Modern RcspWatch file creation validates watch-file compatibility and uses a TransferTask plus storage-device handler. WatchBase exposes source-derived custom-background query/activation command builders. The resource-upload state machine, destination selection and restoration procedure still need tracing before a direct Linux transfer is attempted. No SDK transfer or activation command has been sent by the computer.
 
 A background can establish a custom visual appearance. A live agent screen and replacement menu/touch behavior require a runtime rendering path; repeated background-flash rewrites are not the live-update plan.
+
+
+### Later owner confirmation — custom image displayed
+
+Owner first saw our image with the vendor clock over it, then briefly saw the factory background despite the app retaining the custom selection, then saw our image again with the clock overlay. Our custom picture is therefore owner-confirmed on the real watch through GFit's photo-background path. Persistence/selection behavior remains uncertain. No direct Linux resource transfer was performed. This establishes appearance customization, not custom executable UI or interactive navigation. Next investigation: stock `.sty` / `.view` layout and native control bindings.
+
+
+### Style/view follow-up and cleanup
+
+The narrow RU30 decoder also completely decodes watch6.view (151x180) and watch131.view (146x184), with both record/image CRCs verified. Visual inspection shows static face previews (analog hands and a digital date/time respectively). Thus these .view examples are preview images, not executable layout code. Reference AC701 UI headers define separate clock/text/picture/layout controls and event handlers, but the exact .sty disk layout has not been validated against them; no style fields have been patched. The temporary artwork server timed out and its firewall rule is absent on verification. Public own-artwork PNG remains available in GitHub assets.

@@ -103,3 +103,13 @@ A source-verified informational GetExternalFlashMsg query returned SDK-decoded s
 BGP_B131/BGP_C131 now positively identified and decoded as single-image RU30 resources. Both stock images decode completely to 240x296. Pixel-preserving re-encoding verified; compression bytes differ. Inspected GFit ARM64 converter exports br28_png_to_res; bounded offline emulation reproduces its wrapped resource output. Public narrow Python codec, independently emulated converter oracle and 13 passing tests added. Native-generated own-artwork candidate assets/mero-screen-test.res is 27,993 bytes, SHA256 e5159492a76ffeea541c3c583860b3b1c920e0d6ad9e9ec62861b03c718e89e6. Native/Python comparison matches three small fixtures exactly; full candidate compression grouping differs but pixels agree. Candidate uses native output. See docs/ru30-background-format.md.
 
 Owner rechecked GFit Pro and successfully selected/uploaded an owner photo, correcting the earlier tentative vendor-only recollection. Our PNG was served through a LAN-only directory containing generated artwork, with a ten-minute server/firewall expiry. Phone HTTP retrieval was observed; display confirmation pending. No resource, activation, OTA or firmware command was sent by the computer. The background is a static appearance test; live status and touch/menu replacement remain separate native-UI work.
+
+
+### Later owner confirmation — custom image displayed
+
+Owner first saw our image with the vendor clock over it, then briefly saw the factory background despite the app retaining the custom selection, then saw our image again with the clock overlay. Our custom picture is therefore owner-confirmed on the real watch through GFit's photo-background path. Persistence/selection behavior remains uncertain. No direct Linux resource transfer was performed. This establishes appearance customization, not custom executable UI or interactive navigation. Next investigation: stock `.sty` / `.view` layout and native control bindings.
+
+
+### Style/view follow-up and cleanup
+
+The narrow RU30 decoder also completely decodes watch6.view (151x180) and watch131.view (146x184), with both record/image CRCs verified. Visual inspection shows static face previews (analog hands and a digital date/time respectively). Thus these .view examples are preview images, not executable layout code. Reference AC701 UI headers define separate clock/text/picture/layout controls and event handlers, but the exact .sty disk layout has not been validated against them; no style fields have been patched. The temporary artwork server timed out and its firewall rule is absent on verification. Public own-artwork PNG remains available in GitHub assets.

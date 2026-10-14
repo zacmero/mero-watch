@@ -95,3 +95,6 @@ Owner confirmed Codex delivery but rejects Messages as the primary UI. Dual-link
 ## RU30 milestone
 
 Completed: decode stock single-image backgrounds, verify CRC16 and packed row fields, pixel-preserving round trip, execute native converter offline, generate native-compatible own-artwork candidate, 13 tests, serve phone PNG. Owner confirmed custom-photo upload capability. Pending: our actual screen appearance, direct Linux file transfer/activation with restoration plan, native live-render/menu integration.
+
+
+Custom picture now owner-confirmed on watch, with vendor clock overlay and transient factory-image fallback. Background milestone achieved. Next: style/view format and native callbacks for replacing clock/menu layout.
