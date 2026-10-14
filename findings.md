@@ -123,3 +123,17 @@ Owner explicitly prefers a native app/UI through normal firmware update; backgro
 ## 2026-10-13 — runtime and native UI architecture
 
 See [native architecture](docs/native-architecture.md) for startup RAM copies, relocated kernel matches, updater ROM calls/header validation, exact UI helpers and SDK-correlated style loader. Nine stock styles contain 131 windows: all header/table CRCs match, but only one data CRC matches the reference loader. Treat that gap as unresolved, not permission to regenerate stock CRCs. No firmware or resource was installed.
+
+## 2026-10-14 — fresh computer-only stock update
+
+Owner authorized a fresh stock update from a normally booted watch. Original package size/hash verified unchanged; protected recovery copy retained. At UTC04:30:18 the normal-address authenticated E1/E2 probe accepted the stock package (mark offset/length 0/0). At UTC04:30:32 Linux initiated E3 and served device-requested blocks; E8 announced 15,878,656 bytes. Owner independently confirmed the watch entered transfer mode without GFit Pro. This establishes computer-only update entry; full programming and normal boot remain pending. Private sanitized journals: fresh-stock-probe-events.jsonl, fresh-stock-transfer-events.jsonl, fresh-stock-handoff-events.jsonl under captures/firmware-work. Passive handoff observer is active for the two-stage transition. Initial explicit ConnectDevice returned Error.Failed although LE was already connected; the existing LE connection authenticated successfully.
+
+### Fresh stock update: completed programming
+
+**Observed (2026-10-14):** Starting from normally booted firmware, Linux initiated the full stock update without a GFit Pro update session. Owner confirmed entry into transfer mode. UTC04:59:18 first-stage E6 returned80 after3,998 served blocks /15,939,487 response bytes (includes package framing and requested ranges; not a flash readback). The passive observer subscribed at EOF, sent0B payload0001, received01, and observed the peripheral disconnect itself. Direct public-LE reconnect to updater address ...:12 succeeded; target-info mandatory-loader mode was confirmed at04:59:33. E3-only pass two announced1,302,528 bytes. UTC05:01:52 final E6 returned00 after334 blocks /1,309,024 response bytes; E7 reboot received00000000 acknowledgement. Handoff process exited0. Total computer-initiated sequence took about31 minutes20 seconds. Owner reports power-off and is performing normal power-on; normal boot confirmation is pending.
+
+This establishes direct computer-only update entry, both transfer stages, loader handoff and device-reported programming success. It does not establish arbitrary patched firmware compatibility, flash readback or recovery from every failed boot. The original stock package and independent read-only recovery copy remain unchanged.
+
+### Fresh stock update: normal boot confirmed
+
+**Owner-reported (2026-10-14):** After the completed computer-only stock update and normal power-on, the watch returned to its normal clock/menu. The complete fresh-start route is therefore demonstrated on this device: Linux authentication/eligibility, update entry from normal firmware, first-stage file serving, device-driven loader relink, second-stage firmware programming, success acknowledgement and normal boot. GFit Pro was not required for this update sequence. This test installed the original stock package, not the prepared mero-watch marker candidate.

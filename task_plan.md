@@ -108,3 +108,10 @@ Active priority: actual native agent app/UI, not background or stored notificati
 ### 2026-10-13 native architecture checkpoint
 
 Completed offline runtime mapping, updater direct-call inventory and native style directory/relocation inspection. Current next step: explain 130 stock window-data CRC mismatches, then map real widgets/event handlers and prepare a verified offline native-layout fixture. Firmware installation remains dependent on boot validation and a demonstrated recovery path. See docs/native-architecture.md.
+
+## 2026-10-14 — computer-only update verification
+Entry from normal firmware: confirmed by host transfer and owner display. Active: complete stock resource pass, loader handoff, firmware pass, verify normal boot. Then native UI mods.
+
+Fresh stock update: both Linux-initiated passes, loader relink, final success and reboot acknowledgement completed. Pending owner normal-boot confirmation. No new firmware modification was installed in this test.
+
+Fresh computer-only stock update verification: COMPLETE. Owner confirmed normal boot. Next: traced, visibly testable native UI modification using the established Linux updater; arbitrary modifications and failed-boot recovery remain unproved.
