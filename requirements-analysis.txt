@@ -1,0 +1,4 @@
+# Optional offline image/resource investigation tools; not bridge dependencies.
+Pillow
+pyelftools
+unicorn

@@ -90,3 +90,8 @@ Completed: read-only local lifecycle source, source-derived text sender with pri
 ## Custom-screen branch
 
 Owner confirmed Codex delivery but rejects Messages as the primary UI. Dual-link repair and post-repair message-only behavior verified. Informational query established reported 240x296 screen, W002 compatibility and 16 MiB external flash. Offline screen concept prepared. Next: stock RU30/resource round trip, compatible custom-face artifact for review, native UI entry/memory/display analysis. No resource or firmware transfer performed.
+
+
+## RU30 milestone
+
+Completed: decode stock single-image backgrounds, verify CRC16 and packed row fields, pixel-preserving round trip, execute native converter offline, generate native-compatible own-artwork candidate, 13 tests, serve phone PNG. Owner confirmed custom-photo upload capability. Pending: our actual screen appearance, direct Linux file transfer/activation with restoration plan, native live-render/menu integration.
