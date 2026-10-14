@@ -53,3 +53,12 @@ The protected stock package remains the restore source while the loader is reach
 ### Deployment started
 
 At UTC21:50:41, the authenticated normal-address eligibility check accepted this candidate. The passive observer was ready at21:51:21; primary Linux transfer began at21:51:26 and announced15,878,656 resource bytes. Runtime experimental BlueZ host configuration was restored after an UnknownMethod failure caused by its absent temporary override. The owner-reported full charge and prior firmware-experiment authorization apply. Device programming, normal boot and visible native execution remain pending.
+
+### Native probe programming completed — UTC22:22
+
+The first stage completed with E6=80 and a peripheral-driven loader relink. The second stage confirmed mandatory-loader mode and returned E6=00 success at22:22:53; E7 received00000000 acknowledgement and the handoff process exited0. The candidate is the compiled native C probe package documented above, not the earlier branding-only fixture. Normal boot and visible label rendering remain pending owner verification. A private build manifest records source, linker, compiled code, ELF and UFW hashes.
+
+
+### Post-transfer owner check (2026-10-14)
+
+Owner-reported: the watch powered off after programming and was turned on; no visible difference was reported during the initial inspection. The exact inspected screen was not specified, so this is not evidence that the native probe failed or executed. The probe targets the Music lyric/text widget, not the watch face or About page. Host-observed: normal-address BLE connected after boot while BREDR was disconnected; bluetoothctl subsequently reported Connection successful. Visible marker verification remains pending.

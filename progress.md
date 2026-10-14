@@ -181,3 +181,19 @@ Owner reports fully charged watch and authorizes proceeding with the approved mi
 Own C probe compiles to58 bytes, fitting a traced routine exactly. Candidate contains only three bounded application changes in both images: own compiled routine, a redirected Music initialization diagnostic call, and mero-watch marker literal. Candidate SHA2567fb622c7bd5ca1fa23f9547f445751e0ddd00b467cfc9eb895a3d598c67b8040; 18,760,384 bytes;164 stored byte changes; non-code outer payloads unchanged and both banks independently validated. All35 tests pass. This is a temporary Music text-area execution probe, not the finished native agent screen; media control handlers and settings remain unchanged. Native appearance and creation timing still require observation.
 
 The previous runtime experimental BlueZ override was absent. Recreated the same temporary override and restarted the host daemon; pairing records preserved. At UTC21:50:41 the normal LE connection authenticated and E1/E2 accepted the candidate. A passive handoff observer was ready at21:51:21; Linux started the primary update at21:51:26. Private native-probe eligibility, transfer and handoff journals remain under ignored captures/firmware-work. No execution/boot success claim is made while the transfer is active.
+
+### Native probe programming completed — UTC22:22
+
+The first stage completed with E6=80 and a peripheral-driven loader relink. The second stage confirmed mandatory-loader mode and returned E6=00 success at22:22:53; E7 received00000000 acknowledgement and the handoff process exited0. The candidate is the compiled native C probe package documented above, not the earlier branding-only fixture. Normal boot and visible label rendering remain pending owner verification. A private build manifest records source, linker, compiled code, ELF and UFW hashes.
+# 2026-10-14: replace inaccessible probe with visible menu proof
+
+Owner reports no Music lyrics/text view; no visible custom C execution has been
+proved. Investigated the real menu dispatcher and all 37 launch records; added
+stock-hash-guarded read-only inventory. Decoded 37 menu icons with descriptor/data
+CRC validation. Built a visible cyan M replacement for Calculator icon resource
+22, shared by three menu variants. Offline package preserves both original code
+banks and all non-resource outer payloads, repairs FAT/JLFS/resource/UFW layers,
+and keeps every size/offset fixed. All 35 existing tests pass; original and
+recovery-copy hashes/0400 modes reconfirmed. Package is prepared, not flashed;
+waiting for phone Bluetooth off and watch nearby before direct transfer.
+

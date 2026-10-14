@@ -254,7 +254,8 @@ async def run(args):
     digest = hashlib.sha256(firmware).hexdigest()
     allowed = {"5f315a22adada0c7933afa89558b5d1e9be577ede10f9dbc5a53cd82c2c23145",
                "a687b219ec0cf3415a3b9961036103e3cafcf4cf5bf9e5011df063fc369ce0b7",
-               "7fb622c7bd5ca1fa23f9547f445751e0ddd00b467cfc9eb895a3d598c67b8040"}
+               "7fb622c7bd5ca1fa23f9547f445751e0ddd00b467cfc9eb895a3d598c67b8040",
+               "6741c87b7dfe98d7724b3b59b39af2fdbed3ab72537f2b827ba77e14a4a01bf1"}
     if digest != args.sha256 or digest not in allowed:
         raise ValueError("firmware not one of the explicitly validated experiment artifacts")
 
