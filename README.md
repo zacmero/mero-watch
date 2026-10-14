@@ -39,6 +39,12 @@ Both BLE and Classic media connections were restored; Linux play/pause events ar
 
 ## Repository map
 
+Current native work: [approved mission](docs/mission-2026-10-15.md),
+[compiled C panel probe](docs/native-panel-probe.md), and
+[possible applications](docs/possible-apps.md), including the owner's
+audio-to-text idea. Computer-only stock OTA and normal boot are demonstrated;
+the first compiled UI probe is a separate experiment with its own outcome record.
+
 - [Modification options](docs/modification-options.md) — practical routes to agent status/commands, voice, protocol bridges and native firmware; latest connection limitation and next experiments
 
 - [Device dossier](docs/device-dossier.md) — known facts, hypotheses, unknowns, preservation rules

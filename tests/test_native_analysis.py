@@ -56,6 +56,15 @@ class NativeAnalysisTests(unittest.TestCase):
         self.assertEqual(direct_call(0x1000, 6, "call -10"), 0xffc)
         self.assertIsNone(direct_call(0x1000, 2, "call r2"))
 
+    def test_short_ui_format_labels_require_explicit_minimum(self):
+        text = "1000: c0 ff 00 20 00 00 r0 = 8192"
+        self.assertEqual(index(text, b"ascii\0", 8192, False,
+                               re.compile("ascii"))["string_references"], [])
+        result = index(text, b"ascii\0", 8192, False, re.compile("ascii"), 4)
+        self.assertEqual(result["string_references"][0]["text"], "ascii")
+        with self.assertRaises(ValueError):
+            index(text, b"ascii\0", 8192, False, re.compile("ascii"), 0)
+
     def test_linear_tracker_drops_values_after_branch_and_compound_write(self):
         text = """1000: c4 ff 00 20 00 00 r4 = 8192
 1006: c0 ff 00 00 00 00 r0 = 0

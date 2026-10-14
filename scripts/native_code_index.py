@@ -29,9 +29,12 @@ def direct_call(address, size, operation):
     return address + size + int(match[1]) if match else None
 
 
-def index(text, payload, base, app, pattern):
+def index(text, payload, base, app, pattern, minimum_length=6):
+    if not 2 <= minimum_length <= 64:
+        raise ValueError("string minimum must be between 2 and 64 bytes")
     labels = {}
-    for match in re.finditer(rb"[ -~]{6,}", payload):
+    expression = rb"[ -~]{" + str(minimum_length).encode("ascii") + rb",}"
+    for match in re.finditer(expression, payload):
         label = match.group().decode("ascii")
         if not pattern.search(label):
             continue
@@ -103,10 +106,11 @@ def main():
     parser.add_argument("output", type=Path)
     parser.add_argument("--base", type=lambda value: int(value, 0), default=FLASH_BASE)
     parser.add_argument("--app", action="store_true")
+    parser.add_argument("--min-string-length", type=int, default=6)
     parser.add_argument("--match", default=r"(?i)ui_|style|layout|draw|touch|crc|verify|flash\.bin|uboot|signature")
     args = parser.parse_args()
     result = index(args.disassembly.read_text(), args.binary.read_bytes(), args.base,
-                   args.app, re.compile(args.match))
+                   args.app, re.compile(args.match), args.min_string_length)
     import os
     descriptor = os.open(args.output, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
     with os.fdopen(descriptor, "w") as stream:

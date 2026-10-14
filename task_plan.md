@@ -119,3 +119,5 @@ Fresh computer-only stock update verification: COMPLETE. Owner confirmed normal 
 ## Approved mission for 2026-10-15
 
 See docs/mission-2026-10-15.md for the owner-approved sequence, success criteria, retained features, evidence boundaries and command-console direction. First target: traced native panel plus observable custom handler, then one live agent value. Style CRC blocker resolved across 131 windows; event/control paths and custom code execution remain to be demonstrated.
+
+Active native experiment: deploy the bounded compiled C Music-text probe, confirm normal boot and marker display, check media/connectivity/settings, then separate native panel and event/live-data work. See docs/native-panel-probe.md.

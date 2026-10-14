@@ -97,11 +97,12 @@ def repack(backend, layout, patches):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("action", choices=("roundtrip", "branding-fixture"))
+    parser.add_argument("action", choices=("roundtrip", "branding-fixture", "native-probe"))
     parser.add_argument("input", type=Path)
     parser.add_argument("output", type=Path)
     parser.add_argument("--backend", type=Path, required=True)
     parser.add_argument("--crypto-path", type=Path, required=True)
+    parser.add_argument("--probe-code", type=Path)
     args = parser.parse_args()
     if args.input.resolve() == args.output.resolve() or args.output.exists():
         parser.error("Use a new output path; original files are never overwritten")
@@ -117,18 +118,29 @@ def main():
         raise ValueError("Original bank application contents differ")
     output = raw
     offset = None
-    if args.action == "branding-fixture":
+    if args.action in ("branding-fixture", "native-probe"):
         old, new = b"Apple Watch", b"mero-watch\0"
         app = app_bytes(layouts[BANKS[0]])
         if app.count(old) != 1 or len(old) != len(new):
             raise ValueError("Unique equal-length fixture string not found")
         offset = app.index(old)
+        changes = [(offset, new)]
+        if args.action == "native-probe":
+            if args.probe_code is None:
+                parser.error("native-probe requires --probe-code")
+            if __package__:
+                from .native_panel_probe import patches
+            else:
+                from native_panel_probe import patches
+            changes = patches(app, args.probe_code.read_bytes())
         for bank in BANKS:
             layout = checked_parse(backend, output, bank)
-            output = repack(backend, layout, [("app.bin", offset, new)])
+            output = repack(backend, layout, [("app.bin", p, data) for p, data in changes])
+        expected = bytearray(app)
+        for position, data in changes:
+            expected[position:position + len(data)] = data
         for bank in BANKS:
             patched = checked_parse(backend, output, bank)
-            expected = app[:offset] + new + app[offset + len(old):]
             if app_bytes(patched) != expected:
                 raise ValueError(f"Unexpected application mutation: {bank}")
     # Every non-code outer payload, including the OTA loader/resources/config,
