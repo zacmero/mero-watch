@@ -103,3 +103,8 @@ Custom picture now owner-confirmed on watch, with vendor clock overlay and trans
 ## Native firmware / normal-update branch
 
 Active priority: actual native agent app/UI, not background or stored notifications. Completed offline: dual-code-image byte-exact roundtrip, both-image mutation fixture and CRC checks, preserved loader/resources/config, negative CRC tests, seven verified updater decodes. Next: native updater acceptance/ROM call trace, app RAM/section mapping, meaningful renderer/input patch, exact-board recovery. No firmware transfer or image exploit performed.
+
+
+### 2026-10-13 native architecture checkpoint
+
+Completed offline runtime mapping, updater direct-call inventory and native style directory/relocation inspection. Current next step: explain 130 stock window-data CRC mismatches, then map real widgets/event handlers and prepare a verified offline native-layout fixture. Firmware installation remains dependent on boot validation and a demonstrated recovery path. See docs/native-architecture.md.

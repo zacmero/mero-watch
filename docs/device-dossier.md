@@ -161,3 +161,8 @@ Next: inspect SDK and native notification display policy before changing flags; 
 Owner confirms the Mero Codex message in Messages, without a popup; vibration on that delivery was uncertain. Current inspection found Device1 Connected=true but MediaControl1 Connected=false and no watch input device. Standard Connect alone did not restore media. Explicit advertised HID/A2DP-sink/AVRCP profile connections restored MediaControl and the AVRCP input device. Owner then confirmed the Bluetooth icon lit, but the subsequent Mero link test still produced only a stored message, without popup or vibration. Both-bearer availability alone therefore does not explain that test's behavior.
 
 A source-verified informational GetExternalFlashMsg query returned SDK-decoded screen dimensions 240x296, reported external flash and FAT size 16 MiB each, match version W002 and external-flash receive MTU 256. These are device reports, not physical measurements. Offline custom-face and native UI routes, source provenance, unknowns and the 240x296 screen concept are recorded in docs/custom-screen-research.md. No face/resource transfer, activation, firmware command or flash operation occurred.
+
+
+## 2026-10-13 — offline native architecture evidence
+
+Startup-derived RAM copy map, two exact UI helper matches and updater/header inspection are documented in [native architecture](native-architecture.md). These establish analysis leads, not a shell, custom app, verified update acceptance or recovery capability. Device was untouched during this pass.

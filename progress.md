@@ -85,3 +85,8 @@ The narrow RU30 decoder also completely decodes watch6.view (151x180) and watch1
 ## 2026-10-13 — Native firmware route prioritized
 
 Owner explicitly prefers a native app/UI through normal firmware update; background and notification demonstrations do not satisfy that goal. Offline lab now reproduces original firmware byte-exactly through both code-image paths and builds a CRC-consistent equal-length branding fixture in both app images. Fixture changes 46 stored bytes; no new app behavior or device acceptance is claimed. Nested bootloader/key/config and every non-code outer payload were preserved. Negative tests reject corrupted outer payload and stale nested CRC after outer-only repair. Seven embedded native updaters, including both BLE helpers, decode completely with header/decoded-data CRCs verified. Sixteen unit tests passed. Source/tool pins, hashes, optional-metadata limits and next boundaries recorded in docs/firmware-update-lab.md. No DFU command, update handoff, firmware transfer or image exploit was sent to the watch. Actual UI patch, boot-policy tracing and recovery remain unresolved.
+
+
+## 2026-10-13 — native architecture pass
+
+Added stock-hash-guarded runtime ELF mapping, conservative code indexing and read-only style inventory. Confirmed next-instruction-relative PI32v2 calls with a compiled fixture; resolved 148 updater direct ROM calls and documented 174 unresolved indirect calls. Recorded two exact UI function matches and native loader correlation. Public architecture notes link evidence and open gaps. Validation: 21 unit tests pass; real nine-file style inventory validates 131 header/table checks and reports the unresolved data mismatch. Device untouched.

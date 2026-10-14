@@ -19,3 +19,8 @@ The pinned reference AC701 SDK defines separate clock, number, text, picture and
 Identify the actual style loader and control-record traversal in the downloaded native application, validate lengths/relocations against multiple stock faces, and resolve how IDs bind native handlers. Then construct and independently parse a modified face bundle that removes the stock clock and adds the desired presentation. Touch/agent commands and live data need demonstrated native callbacks and a runtime update route. No `.sty` modification, face-bundle transfer or firmware patch has been attempted.
 
 The direct Linux transfer branch is separate: the SDK has FatFsWatch/RcspWatch implementations, a TransferTask and explicit custom-background activation builders. Destination selection, transaction completion and restoration still need verification before computer-originated resource writes.
+
+
+## 2026-10-13 — native loader and runtime follow-up
+
+Full dated architecture record: [native architecture](native-architecture.md). It covers the source-correlated screen loader, exact UI helper matches and all 131 stock window directory/table CRC checks. Stock data CRC interpretation remains unresolved for 130 windows; no modified layout was uploaded.
