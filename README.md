@@ -44,6 +44,7 @@ own diagnostic UI and command console on the existing firmware.
 ## Investigation records
 
 - [Visible menu modification and launch architecture](docs/native-menu-launch.md)
+- [Separate native shell candidate and validation](docs/native-shell.md)
 - [Computer-only OTA](docs/direct-ota.md) and [installation evidence](docs/installation-proof.md)
 - [Approved native mission](docs/mission-2026-10-15.md)
 - [Native architecture](docs/native-architecture.md) and [build analysis](docs/build-analysis.md)

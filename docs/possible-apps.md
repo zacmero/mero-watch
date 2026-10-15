@@ -18,3 +18,8 @@ Investigate true local transcription first as requested, with measured resource 
 - System panel: firmware identity, connection state and basic configuration.
 
 The immediate implementation remains the [approved native-panel mission](mission-2026-10-15.md). Audio research is a later branch and does not replace its success criteria.
+
+
+### Exercise-menu alternative (owner idea, 2026-10-14)
+
+Owner reports a left-side navigation action opens the factory exercise menu and wants to explore replacing it or adding an alternative later. Deferred: current priority is a separate mero-shell menu entry while retaining existing apps. Navigation details and replacement implementation are untested.

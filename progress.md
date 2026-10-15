@@ -201,3 +201,34 @@ waiting for phone Bluetooth off and watch nearby before direct transfer.
 2026-10-14 23:23 UTC: authorized menu-logo direct OTA completed. First pass E6=80 and expected peripheral disconnect; second pass E6=00, E7 acknowledgement 00000000, updater exit 0. Owner confirmed grid menu. Awaiting normal boot and cyan M/Calculator launch check. Per-pass timeout raised to 60 minutes for future runs after this successful first pass finished five seconds before the former 30-minute limit.
 
 Owner-verified completion: normal grid menu returned; Calculator icon is M, label is still CALC, and tapping it opens normal Calculator. Visible menu-resource control and preserved launch are now proved. New entry/app cloning, custom native C execution and label modification remain unproved. Host normal-address LE connection is present; updater disconnected.
+
+New owner direction: implement a distinct menu entry and diagnostic mero-shell, retain factory apps, and inspect the entire firmware for spec-query clues used by other apps. Exercise-menu customization recorded as a later branch. No additional flash started.
+
+Native mero_specs C read-only allocator binding compiles for PI32v2/r3. Host tests mapped synthetic RAM at the traced addresses and checked valid, empty, reversed, oversized-free and inconsistent-minimum snapshots plus null output. All pass and input RAM remains byte-identical. This validates readout logic and compilation, not live device values or execution. New UI entry/screen remains in progress.
+
+Own mero-shell UI callback module compiles and links at proposed appended-code address 0x0613d6dc, with statically bound traced UI allocation/text/getter/redraw/window/menu routines and allocator readout. Binary extraction first failed because this objcopy requires explicit -j; corrected to -j .text. This is an offline artifact, not installed/executed. The native window constructor calls user INIT before children; text constructor calls user INIT only after its text attributes initialize, so the new probe binds each own text widget directly rather than looking for a not-yet-created child.
+
+Style-builder count guard caught a context error before any package/flash: 131 is total windows across nine bundles; JL.sty itself has119. Shell now appends JL window119. Additional layer/layout action-list pointers were rebound to empty actions. Tree validation caught inherited child-count2 in one footer-layer template; its independent single-layout footer is now explicitly count1. Rebuilt style passes120 complete trees and all checked CRC/pointer layers.
+
+Image builder verified1912 original descriptors/payload CRCs. Its menu-count guard caught38 images in variant118 (others37); new launcher uses39 so existing38 is preserved. New directory adds a shell resource-page alias from About and all original bitmap payloads remain exact. Original Calculator image22 is retained for the separate-launcher candidate. README archived verbatim; active overview and all4 GitHub issues updated with dated achievements, original issue scopes retained, baseline issue1 closed as completed.
+# 2026-10-15 00:23 UTC — independent native shell first installation
+
+Implemented the separate launcher/window package and compiled current native
+source:704 bytes, code SHA2560360a6e4299828169d2e3fcc5a429e8b0537d46ecd503cb7c2dad68a50e4f8cb.
+Candidate18,813,120 bytes SHA256850a2fc80ae17972b09af770d13ad2c4f15a76dcbad8ba9d31615838fced13b4.
+All38 tests pass. Independent candidate decrypt checks120 trees/1925 image
+records; all original bitmaps and unrelated resource files retained. Protected
+stock copies reverified exact/0400. Details in docs/native-shell.md.
+
+Packaging guards caught and corrected before flashing: callback field order
+is ID/touch/key/change; observed JLFS resource child offsets are absolute,
+and root size includes its header; final bank root filename is eq_cfg_hw.bin.
+PRCT is a partition spanning the changed program, not a separately preserved
+file payload. Its descriptor/capacity is retained and bounds enforced.
+Correction to earlier readout fixture: free-heap and physical-pool counters
+are independent; removed unjustified free<=pool constraint and reran tests.
+
+Owner reports charged/nearby watch and iPhone Bluetooth off. Passive observer
+ready00:23:29 UTC; primary authenticated, entered OTA and is serving resources.
+No execution/boot/UI success claim yet. Sessions56367(primary),62865(handoff).
+

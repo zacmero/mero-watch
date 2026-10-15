@@ -12,7 +12,6 @@ from pathlib import Path
 import struct
 
 from .ufw_lab import load_backend, checked_parse, ORIGINAL_SHA256, BANKS
-from .native_menu_logo import replace
 
 RESOURCE_SHA256 = "5f1b405ea728c735d885913aef695647824a36ed95e120e8b885dba8384dd2e3"
 BUNDLE_SHA256 = "4927e21c0d2834cc188387c6e5111e7026ab7b62d618283fc58bc03487da3d9c"
@@ -67,6 +66,7 @@ def bundle_locations(resources):
 
 
 def build(raw, backend):
+    from .native_menu_logo import replace
     if hashlib.sha256(raw).hexdigest() != ORIGINAL_SHA256:
         raise ValueError("input must be protected original package")
     with contextlib.redirect_stdout(io.StringIO()):

@@ -121,3 +121,8 @@ Fresh computer-only stock update verification: COMPLETE. Owner confirmed normal 
 See docs/mission-2026-10-15.md for the owner-approved sequence, success criteria, retained features, evidence boundaries and command-console direction. First target: traced native panel plus observable custom handler, then one live agent value. Style CRC blocker resolved across 131 windows; event/control paths and custom code execution remain to be demonstrated.
 
 Active native experiment: deploy the bounded compiled C Music-text probe, confirm normal boot and marker display, check media/connectivity/settings, then separate native panel and event/live-data work. See docs/native-panel-probe.md.
+
+
+## Active mission: separate mero-shell entry (2026-10-14)
+
+Owner requires an additional main-menu entry and custom diagnostic screen, preserving existing apps. Investigate menu expansion and launch/control registration; establish code/resource capacity without sacrificing factory apps; trace whole-firmware system-spec APIs and other apps; implement a bounded native shell and prove its visible launch through direct OTA. The earlier hidden Music probe did not prove execution. Visible menu-icon modification is now owner-verified. Exercise-menu replacement/alternative is a future idea, not current scope. Native OS/POSIX shell remains unproved.
