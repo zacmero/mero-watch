@@ -153,7 +153,9 @@ def append_bank(layout, module, backend):
     data = data[:end]
     struct.pack_into('<H', data, last.hdr_off + 14, 0)
     struct.pack_into('<H', data, last.hdr_off, crc(data[last.hdr_off + 2:last.hdr_off + 32]))
-    header = bytearray(struct.pack('<HHIIBBH16s', 0, crc(module), 0, len(module) + 32, 0x82, 0, 1, b'mero_shell.bin'))
+    # Every observed SFC root entry starts its data32 bytes after its header.
+    # The backend parser hardcodes this and would silently accept a bad eoff.
+    header = bytearray(struct.pack('<HHIIBBH16s', 0, crc(module), 32, len(module) + 32, 0x82, 0, 1, b'mero_shell.bin'))
     struct.pack_into('<H', header, 0, crc(header[2:]))
     data.extend(header + module)
     sfc_end = len(data)
@@ -222,6 +224,8 @@ def build(raw, code, symbols, backend):
         if app_bytes(verified) != expected:
             raise ValueError('unexpected original application mutation')
         own = next(e for e in verified.jlfs_app_dir if e.name == 'mero_shell.bin')
+        if own.eoff != 32 or own.esize != own.data_size + 32:
+            raise ValueError('native root file offset/size contract invalid')
         check_jlfs(verified.flash_bin_plain, own.hdr_off, own.data_offset, own.data_size)
         if verified.flash_bin_plain[own.data_offset:own.data_offset + own.data_size] != module:
             raise ValueError('appended module readback failed')

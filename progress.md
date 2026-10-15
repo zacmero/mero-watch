@@ -232,3 +232,24 @@ Owner reports charged/nearby watch and iPhone Bluetooth off. Passive observer
 ready00:23:29 UTC; primary authenticated, entered OTA and is serving resources.
 No execution/boot/UI success claim yet. Sessions56367(primary),62865(handoff).
 
+# 2026-10-15 00:59 UTC — shell candidate rejected; stock code recovered
+
+First new-shell candidate reached pass-two EOF but E6 returned04 (reference:
+bad update file), not success. No reboot commanded on failure. Owner observed
+waiting-for-connection screen; mandatory-loader mode independently confirmed.
+Stock-code E3-only recovery on existingLE connection returned00 at00:59:22;
+E7 acknowledged00000000. Normal boot owner confirmation pending. First-stage
+resource changes may remain; this was not a full resource rollback.
+
+Removed rejected candidate from allowlist. Added loader-only mode guarded by
+mandatory-loader flag and structured error/status/range journaling. Future
+per-block requests/sends record offsets/lengths without payloads; exception
+records avoid authentication material. All41 tests pass. Running recovery
+used already loaded updater code; new diagnostics apply to subsequent runs.
+
+Found a concrete missed serialized-field error: new SFC root leaf eoff was0,
+but every stock root has32. Backend parser hardcodes header+32, masking the
+bad eoff during its CRC validation. Builder corrected and explicit root-offset
+contract added. Plausible cause, not proven exact loader rejection branch.
+Corrected candidate is being built offline; not flashed or admitted yet.
+

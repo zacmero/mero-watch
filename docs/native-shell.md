@@ -1,7 +1,8 @@
 # Separate native mero-shell — 2026-10-15
 
-Status: offline checks passed; first device installation started. Native code
-execution, screen rendering and interaction remain unverified until owner checks.
+Status: first device installation rejected at the end of pass two with E6 `04`.
+The pinned reference calls this "bad update file"; exact rejected field is not
+yet identified. Native code execution and the new screen are NOT proved.
 
 ## Candidate and provenance
 
@@ -73,3 +74,32 @@ The direct OTA observer was ready at2026-10-15 00:23:29 UTC before primary start
 Private journals: `native-shell-transfer-events.jsonl` and
 `native-shell-handoff-events.jsonl` under ignored captures/firmware-work.
 Completion, boot and owner observations will be appended rather than assumed.
+
+## First attempt rejected — 00:54 UTC
+
+Pass one returned E6 `80` at00:52:24,4005 served blocks/15,969,695 response bytes.
+Loader relink and mandatory-mode check succeeded. Pass two announced1,312,768
+bytes and returned E6 `04` at00:54:39 after344 blocks/1,319,264 response bytes.
+No E7 reboot was sent. Owner reports the Chinese waiting-for-connection screen;
+host reconnected and positively confirmed mandatory-loader mode.
+
+Offline CRC/decrypt checks did not establish updater acceptance of bank growth
+or the extra root JLFS file. Those layout changes are suspects, not an identified
+cause. Candidate removed from updater allowlist to prevent accidental reuse.
+At00:56:19 Linux started E3-only recovery using the protected original package;
+E1/E2 are deliberately skipped in confirmed mandatory-loader mode. Recovery
+result and normal boot remain pending. Previously transferred resource changes
+may remain: loader-only stock code recovery is not a full resource rollback.
+
+### Recovery and first concrete format defect
+
+Stock-code recovery returned E6 `00` at00:59:22 UTC; E7 acknowledged00000000.
+Owner normal-boot confirmation remains pending. Recovery reused the existing
+LE connection after redundant ConnectDevice calls failed despite Connected=yes.
+
+Post-failure comparison found an actual builder defect: all observed root SFC
+entries encode data offset32, but the new leaf encoded0. The backend parser
+hardcodes header+32, so its successful decrypt/CRC check failed to catch this
+incorrect serialized field. Corrected builder to32 and added an explicit
+contract check. This is a plausible explanation of E6 `04`, not proof of the
+loader's precise failing branch; no corrected package has been installed yet.

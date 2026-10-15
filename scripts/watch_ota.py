@@ -15,6 +15,47 @@ from pathlib import Path
 import time
 from scripts.watch_notifications import WatchNotifications, frame
 
+# E6 result meanings from pinned reference_rcsp_ota.py, E6_RESULT.
+# This is a device result, not a diagnosis of the exact failing validation.
+E6_RESULTS = {0: "success", 0x80: "loader staged; relink required",
+              1: "verification failed", 2: "update failed", 3: "key mismatch",
+              4: "bad update file", 5: "uboot mismatch", 6: "length error",
+              7: "flash read/write failed", 8: "command timeout"}
+
+
+def status_description(status):
+    return E6_RESULTS.get(status[0], "unknown device result") if status else "empty device result"
+
+
+def failure_record(args, exception):
+    """Journal context without copying auth data, payloads or exception messages."""
+    context = {}
+    last = {}
+    if args.log.exists():
+        for line in args.log.read_text().splitlines():
+            try:
+                record = json.loads(line)
+            except ValueError:
+                continue
+            if record.get("event") == "selected":
+                context = {}
+            for field in ("sha256", "address", "blocks", "bytes_served", "last_offset",
+                          "offset", "length", "status", "status_description"):
+                if field in record:
+                    context[field] = record[field]
+            if record.get("event") not in ("ignored_device_command", "serving"):
+                last = record
+            if record.get("event") in ("pass_two_loader_confirmed", "recovery_loader_confirmed"):
+                context["stage"] = "mandatory_loader"
+            if record.get("event") in ("reboot_requested", "pass_two_success_reboot_requested"):
+                context["reboot_requested"] = True
+    expected = last.get("status") == "80" and last.get("event") in (
+        "transfer_done_status", "device_status", "idle_status")
+    return dict(utc=datetime.now(timezone.utc).isoformat(),
+                event="handoff_pending" if expected else "update_failed",
+                exception_type=type(exception).__name__, last_event=last.get("event"),
+                reboot_requested=context.get("reboot_requested", False), context=context)
+
 
 async def connect_le(address):
     """Explicit public-LE bearer observed in this watch's updater advertisement.
@@ -226,7 +267,9 @@ class Updater(WatchNotifications):
                 return status
             if opcode == 0xe5:
                 offset, payload, done = requested_block(parameters, firmware)
+                emit("block_requested", offset=offset, length=len(payload), eof=done)
                 await self.write(response(opcode, sequence, payload))
+                emit("block_sent", offset=offset, length=len(payload), eof=done)
                 if done:
                     status = await self.request(frame(0xe6, self.next_sequence(), b""))
                     emit("transfer_done_status", status=status.hex(), blocks=blocks, bytes_served=total)
@@ -251,24 +294,26 @@ class Updater(WatchNotifications):
         raise TimeoutError("overall OTA deadline reached")
 
 
-async def run(args):
+async def _run(args):
     firmware = args.firmware.read_bytes()
     digest = hashlib.sha256(firmware).hexdigest()
     allowed = {"5f315a22adada0c7933afa89558b5d1e9be577ede10f9dbc5a53cd82c2c23145",
                "a687b219ec0cf3415a3b9961036103e3cafcf4cf5bf9e5011df063fc369ce0b7",
                "7fb622c7bd5ca1fa23f9547f445751e0ddd00b467cfc9eb895a3d598c67b8040",
-               "6741c87b7dfe98d7724b3b59b39af2fdbed3ab72537f2b827ba77e14a4a01bf1",
-               "850a2fc80ae17972b09af770d13ad2c4f15a76dcbad8ba9d31615838fced13b4"}
+               "6741c87b7dfe98d7724b3b59b39af2fdbed3ab72537f2b827ba77e14a4a01bf1"}
     if digest != args.sha256 or digest not in allowed:
         raise ValueError("firmware not one of the explicitly validated experiment artifacts")
 
     def emit(event, **fields):
+        if event in ("idle_status", "transfer_done_status", "device_status") and "status" in fields:
+            fields["status_description"] = status_description(bytes.fromhex(fields["status"]))
         record = dict(utc=datetime.now(timezone.utc).isoformat(), event=event, **fields)
         args.log.parent.mkdir(parents=True, exist_ok=True)
         fd = os.open(args.log, os.O_WRONLY | os.O_APPEND | os.O_CREAT, 0o600)
         with os.fdopen(fd, "a") as out:
             out.write(json.dumps(record) + "\n")
-        print(json.dumps(record), flush=True)
+        if event not in ("block_requested", "block_sent"):
+            print(json.dumps(record), flush=True)
 
     emit("selected", sha256=digest, bytes=len(firmware), address=args.address)
     if args.handoff:
@@ -278,7 +323,11 @@ async def run(args):
         await connect_le(args.address)
         emit("explicit_le_connected")
     async with Updater(args.address, args.auth_helper, resume=args.resume) as link:
-        if not args.resume:
+        if args.loader_only:
+            if args.resume or not args.flash or not await mandatory_loader(link):
+                raise RuntimeError("loader-only requires flash and confirmed mandatory loader; no E3 sent")
+            emit("recovery_loader_confirmed", address=args.address)
+        elif not args.resume:
             offset, length = await link.probe(firmware)
             emit("eligible", mark_offset=offset, mark_length=length)
         if args.flash:
@@ -295,6 +344,19 @@ async def run(args):
                 raise RuntimeError("OTA final status " + status.hex() + "; no reboot requested")
 
 
+async def run(args):
+    try:
+        return await _run(args)
+    except (Exception, asyncio.CancelledError) as exc:
+        record = failure_record(args, exc)
+        args.log.parent.mkdir(parents=True, exist_ok=True)
+        fd = os.open(args.log, os.O_WRONLY | os.O_APPEND | os.O_CREAT, 0o600)
+        with os.fdopen(fd, "a") as out:
+            out.write(json.dumps(record) + "\n")
+        print(json.dumps(record), flush=True)
+        raise
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--address", required=True)
@@ -304,6 +366,7 @@ if __name__ == "__main__":
     parser.add_argument("--log", type=Path, required=True)
     parser.add_argument("--flash", action="store_true")
     parser.add_argument("--resume", action="store_true", help="Continue the existing authenticated OTA connection without reset/probe/E3")
+    parser.add_argument("--loader-only", action="store_true", help="Confirmed mandatory loader recovery: E3-only, never E1/E2")
     parser.add_argument("--connect-le", action="store_true", help="Establish explicit LE through experimental BlueZ Adapter1.ConnectDevice")
     parser.add_argument("--handoff", action="store_true", help="Observe active pass one and handle E6=80 relink, then E3-only pass two")
     parser.add_argument("--bootloader-address", default="F9:F3:71:D9:79:12")
